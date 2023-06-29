@@ -5,12 +5,15 @@ import Header from './components/Header.tsx'
 import Sidebar from './components/Sidebar.tsx'
 
 function App() {
+  const [newRecipeFormClicked, setNewRecipeFormClicked] = useState(false)
 
   return (
     <>
       <Header />
-      {/* <RecipeForm /> */}
-      <Sidebar />
+      {newRecipeFormClicked ?
+        <RecipeForm /> :
+        <Sidebar />
+      }
     </>
   )
 }

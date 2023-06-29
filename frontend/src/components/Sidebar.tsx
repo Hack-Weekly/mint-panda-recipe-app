@@ -18,7 +18,7 @@ function Sidebar() {
         </svg>
       )}
       <div className={`fixed top-0 left-0 h-full w-32 md:w-44 lg:w-48 bg-[#7f7f7f] text-white -z-50 pt-10 ease-in-out duration-300 ${showSidebar ? "translate-x-0" : "-translate-x-full"}`}>
-        <div className="py-16">
+        <div className="my-14">
           <h2 className="text-xl font-bold text-white px-2 md:px-4 lg:px-6 mb-4">Filters</h2>
           <div className="flex items-center justify-between">
             <h4 className="font-bold px-2 md:px-4 lg:px-6">Contains</h4>
