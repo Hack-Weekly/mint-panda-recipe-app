@@ -1,24 +1,19 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Test deployment of static pages to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ['main']
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: 'pages'
+  group: 'test-deploy'
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  test-and-build:
     defaults:
         run:
             working-directory: ./frontend
