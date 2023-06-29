@@ -1,12 +1,8 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ['production']
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
@@ -21,34 +17,43 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
-  deploy:
+  test-and-build:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+    defaults: 
+      run:
+        working-directory: ./frontend
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
-          working-directory: ./frontend
           node-version: 18
           cache: 'npm'
+          cache-dependency-path: ./frontend/package-lock.json
       - name: Setup and Build
-        working-directory: ./frontend
         run: |
           npm install
           npm test
           npm run build
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    defaults: 
+      run:
+        working-directory: ./frontend
+    steps:
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload dist repository
-          working-directory: ./frontend
           path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
