@@ -1,6 +1,6 @@
 const Header = () => {
   return (
-    <header className="bg-[#41482e] py-6 w-[100%] m-0">
+    <header className="bg-[#41482e] py-6 w-[100%] m-0 shadow-lg">
       <div className="container mx-auto text-center">
         <h1 className="text-2xl text-white">Mint Panda</h1>
       </div>

@@ -4,12 +4,11 @@ import RecipeForm from './components/recipe/RecipeForm.tsx'
 import Header from './components/Header.tsx'
 
 function App() {
-  // const [count, setCount] = useState(0)
 
   return (
     <>
       <Header />
-      {/* <RecipeForm></RecipeForm> */}
+      <RecipeForm />
     </>
   )
 }
