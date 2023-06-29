@@ -10,4 +10,4 @@ Our team decided to use Vite + React + TypeScript for the frontend, and have it 
 - For Development: `npm run dev`
 - For Deployment: `npm run build`
 
-The folder `frontend/dist` is hosted here on github pages at [FILL IN LINK](https://github.com/)
+The folder `frontend/dist` is hosted here on [Github Pages](https://hack-weekly.github.io/mint-panda-recipe-app/)
