@@ -1,0 +1,27 @@
+.recipe {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 30px;
+  background-color: #ebf5e6;
+}
+
+.recipe__image {
+  width: 150px;
+}
+
+@for $i from 1 through 6 {
+  .gap-#{$i} {
+    gap: #{$i}rem;
+  }
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.border {
+  border: 1px solid black;
+}
