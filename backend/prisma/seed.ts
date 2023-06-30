@@ -142,7 +142,7 @@ async function main() {
         }
     });
 
-    let recipe_ingredient_link_data: { recipe_id: string, ingredient_id: string, amount: string }[] = [];
+    let recipe_ingredient_link_data: { recipe_id: string, ingredient_id: string, amount: number }[] = [];
 
     let recipe_tag_link_data: { recipe_id: string, tag_id: string }[] = [];
 
@@ -150,7 +150,7 @@ async function main() {
         let recipe_id = recipe_ids[getRandomInt(recipe_ids.length)].id;
         let ingredient_id = ingredient_ids[getRandomInt(ingredient_ids.length)].id;
         let tag_id = tag_ids[getRandomInt(tag_ids.length)].id;
-        let amount = getRandomInt(10) + " grams";
+        let amount = getRandomInt(10);
 
         recipe_ingredient_link_data.push({
             recipe_id: recipe_id,
