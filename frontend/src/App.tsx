@@ -1,14 +1,12 @@
 import './App.css'
-import RecipeForm from './components/recipe/RecipeForm.tsx'
-import Header from './components/Header.tsx'
-import Sidebar from './components/Sidebar.tsx'
+import Navigation from './components/Navigation.tsx'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   return (
     <>
-      <Header />
-      <RecipeForm/>
-      <Sidebar />
+      <Navigation />
+      <Outlet />
     </>
   )
 }
