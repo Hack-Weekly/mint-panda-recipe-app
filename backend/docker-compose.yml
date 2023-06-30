@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  appdb:
+    image: postgres
+ 
+  pgadmin:
+    image: dpage/pgadmin4
+
+volumes:
+  appdb-data:
+  redis-db-data:
