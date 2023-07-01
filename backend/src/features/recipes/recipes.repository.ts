@@ -65,7 +65,7 @@ export const getRecipesById = async (id: string) => {
 
 export const addRecipe = async (newRecipe: AddRecipesDto) => {
 
-    const data: Prisma.recipeCreateInput = {
+    const data = {
         title: newRecipe.title,
         instruction: newRecipe.instruction,
         serving: newRecipe.serving,

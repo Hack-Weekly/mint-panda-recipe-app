@@ -3,6 +3,8 @@ import * as recipesRepository from './recipes.repository'
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { PageList } from "../../models/PageData";
 import { AddRecipesDto } from "./dtos/AddIngredients.dto";
+import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
+import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
 
 interface RequestQuery {
     page: number,
@@ -34,14 +36,14 @@ export const getRecipesById = async (req: Request<{id: string}>, res: Response) 
 
     const mapped = {
         ...result,
-        recipe_ingredient_link: result?.recipe_ingredient_link.map(v => {
+        recipe_ingredient_link: result?.recipe_ingredient_link.map((v: {amount: number, ingredient: IngredientDetailsDto}) => {
             return {
                 id: v.ingredient.id,
                 name: v.ingredient.name,
                 amount: v.amount
             }
         }),
-        recipe_tag_link: result?.recipe_tag_link.map(v => {
+        recipe_tag_link: result?.recipe_tag_link.map((v: {tag: TagDetailsDto}) => {
             return {
                 id: v.tag.id,
                 name: v.tag.name
