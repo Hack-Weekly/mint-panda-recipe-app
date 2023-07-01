@@ -5,19 +5,20 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewRecipe from "./pages/NewRecipe.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
-import DashboardComponent from "./components/dashboard/dashboard.component.tsx";
+// import DashboardComponent from "./components/dashboard/dashboard.component.tsx";
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
+      element: <App />,
       children: [
+        // {
+        //   path: "",
+        //   element: <DashboardComponent />,
+        // },
         {
-          path: "",
-          element: <DashboardComponent />,
-        },
-        {
-          path: "/dashboard",
+          index: true,
           element: <Dashboard />,
         },
         {
@@ -28,7 +29,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    basename: "/mint-panda-recipe-app",
+    basename: "/mint-panda-recipe-app/",
   }
 );
 
