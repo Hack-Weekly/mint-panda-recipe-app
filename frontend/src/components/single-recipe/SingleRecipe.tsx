@@ -13,22 +13,59 @@ export default function SingleRecipe() {
 
     // Container for the entire form
     <div className="mx-auto my-2.5 w-9/12">
-      <img className="recipe_image float-right rounded-3xl w-4/12 px-2" src={image} alt="recipe"></img>
+      <img className="recipe_image float-right scale rounded-3xl w-4/12 px-2" src={image} alt="recipe"></img>
 
       {/* Container for the header + horizontal bar */}
       <div className="text-left w-8/12 pr-5 pb-4">
-        <h1 className="text-3xl font-bold mt-4 my-2">SingleRecipe</h1> 
+        <h1 className="text-3xl font-bold mt-4 mb-2">SingleRecipe</h1> 
+        <div className="border-t-2 border-gray-950 mb-2"></div>
+
+        <h2 className="text-xl text-left font-bold">Tags</h2>
+        <p>
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+          Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
+        </p>
+
+        <br></br>
+        <br></br>
+        <br></br>
+
+        
+      </div>
+
+      <div className="text-left w-8/12 pr-5 pb-4">
+        <h2 className="text-2xl text-left font-bold mb-2">Steps</h2>
         <div className="border-t-2 border-gray-950"></div>
       </div>
 
-      <p>Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum
-      </p>
+      <div className="pl-5">
+        <ol className="list-decimal">
+          <li className="mb-2">
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          </li>
+
+          <li className="mb-2">
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          </li>
+          
+          <li className="mb-2">
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+            Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          </li>
+
+        </ol>
+      </div>
+
 
     </div>
   )
