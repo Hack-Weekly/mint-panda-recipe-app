@@ -33,7 +33,10 @@ export const addIngredients = async (req: Request, res: Response) => {
 
     res
 	    .status(StatusCodes.CREATED)
-	    .send(ReasonPhrases.CREATED);
+	    .send({
+            status: StatusCodes.CREATED,
+            message: `Created with Id: '${result.id}'`
+        });
 }
 
 export const updateIngredients = async (req: Request, res: Response) => {
