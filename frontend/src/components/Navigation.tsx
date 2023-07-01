@@ -6,8 +6,6 @@ const Navigation = () => {
     <>
       <div className="relative z-20">
         <Header />
-        <Link to="/">Home</Link>
-        <Link to="/recipe/new">New recipe</Link>
       </div>
     </>
   )

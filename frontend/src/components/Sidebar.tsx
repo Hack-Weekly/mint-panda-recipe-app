@@ -38,7 +38,9 @@ function Sidebar() {
             <ul className="mb-2 ml-4 md:ml-6 lg:ml-8">
               <li className="text-sm flex items-center">
                 <input type="checkbox" className="mr-1" />
-                Nuts
+                <div style={{ overflowWrap: "break-word" }} className="w-20 md:w-30 lg:w-40">
+                  Nuts
+                </div>
               </li>
               <li className="text-sm flex items-center">
                 <input type="checkbox" className="mr-1" />

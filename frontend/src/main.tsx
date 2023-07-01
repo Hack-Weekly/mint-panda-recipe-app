@@ -5,7 +5,6 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewRecipe from "./pages/NewRecipe.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
-// import DashboardComponent from "./components/dashboard/dashboard.component.tsx";
 
 const router = createBrowserRouter(
   [
@@ -13,10 +12,6 @@ const router = createBrowserRouter(
       path: "/",
       element: <App />,
       children: [
-        // {
-        //   path: "",
-        //   element: <DashboardComponent />,
-        // },
         {
           index: true,
           element: <Dashboard />,
