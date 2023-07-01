@@ -9,15 +9,15 @@ function Sidebar() {
   return (
     <>
       {showSidebar ? (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 fixed top-0 left-0 mt-6 ml-6 cursor-pointer" onClick={() => setShowSidebar(!showSidebar)}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 fixed top-0 left-0 mt-6 ml-6 cursor-pointer z-30" onClick={() => setShowSidebar(!showSidebar)}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 fixed top-0 left-0 mt-6 ml-6 cursor-pointer" onClick={() => setShowSidebar(!showSidebar)}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 fixed top-0 left-0 mt-6 ml-6 cursor-pointer z-30" onClick={() => setShowSidebar(!showSidebar)}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
         </svg>
       )}
-      <div className={`fixed top-0 left-0 h-full w-32 md:w-44 lg:w-48 bg-[#7f7f7f] text-white -z-50 pt-10 ease-in-out duration-300 ${showSidebar ? "translate-x-0" : "-translate-x-full"}`}>
+      <div className={`fixed top-0 left-0 h-full w-32 md:w-44 lg:w-48 bg-[#7f7f7f] text-white z-10 pt-10 ease-in-out duration-300 ${showSidebar ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="my-14">
           <h2 className="text-xl font-bold text-white px-2 md:px-4 lg:px-6 mb-4">Filters</h2>
           <div className="flex items-center justify-between">
@@ -47,7 +47,7 @@ function Sidebar() {
             </ul>
           )}
           <div className="flex items-center justify-between">
-            <h4 className="text-sm font-bold px-2 md:px-4 lg:px-6">Time Duration</h4>
+            <h4 className="font-bold px-2 md:px-4 lg:px-6">Time Duration</h4>
             <button className="text-white p-1 p-1 mr-2 md:mr-4 lg:mr-6 bg-transparent" onClick={() => setIsTimeDurationVisible(!isTimeDurationVisible)}>
               {
                 isTimeDurationVisible ?
@@ -65,7 +65,7 @@ function Sidebar() {
             </ul>
           )}
           <div className="flex items-center justify-between">
-            <h4 className="text-sm font-bold px-2 md:px-4 lg:px-6">Servings</h4>
+            <h4 className="font-bold px-2 md:px-4 lg:px-6">Servings</h4>
             <button className="text-white p-1 p-1 mr-2 md:mr-4 lg:mr-6 bg-transparent" onClick={() => setIsServingsVisible(!isServingsVisible)}>
               {
                 isServingsVisible ?
