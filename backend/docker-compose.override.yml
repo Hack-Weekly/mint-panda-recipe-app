@@ -19,3 +19,12 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGA_EMAIL} 
       PGADMIN_DEFAULT_PASSWORD: ${PGA_PASSWORD} 
+
+  recipe.api:
+    container_name: recipe.api
+    depends_on:
+      - appdb
+    environment:
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@appdb:${DB_PORT}/${DB_NAME}
+    ports:
+      - "5000:5000" 
