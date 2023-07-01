@@ -9,11 +9,11 @@ function Sidebar() {
   return (
     <>
       {showSidebar ? (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 fixed top-0 left-0 mt-6 ml-6 cursor-pointer z-30" onClick={() => setShowSidebar(!showSidebar)}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 relative -mt-14 ml-6 cursor-pointer z-30" onClick={() => setShowSidebar(!showSidebar)}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
         </svg>
       ) : (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 fixed top-0 left-0 mt-6 ml-6 cursor-pointer z-30" onClick={() => setShowSidebar(!showSidebar)}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="white" className="w-8 h-8 relative -mt-14 ml-6 cursor-pointer z-30" onClick={() => setShowSidebar(!showSidebar)}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
         </svg>
       )}
