@@ -24,6 +24,9 @@ app.use("/ingredients", ingredientsRouter);
 // Error Handler Middleware
 app.use(errorHandler);
 
+app.use("*", (req, res) => {
+	res.status(StatusCodes.BAD_REQUEST).json({ err: "Invalid Request" });
+});
 
 app.use("*", (req, res) => {
 	res.status(StatusCodes.BAD_REQUEST).json({ message: "Invalid Request" });
