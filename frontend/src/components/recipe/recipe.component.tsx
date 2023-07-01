@@ -6,7 +6,7 @@ import {
     faHeart,
     faPlateWheat,
 } from "@fortawesome/free-solid-svg-icons";
-// const RecipeComponent = ({name: string, ingredients: {name: string, amount: string}[], instructions: string, description: string}) => {
+
 const RecipeComponent = () => {
     return (
         <div

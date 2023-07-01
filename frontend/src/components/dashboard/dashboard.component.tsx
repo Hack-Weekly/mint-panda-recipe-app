@@ -1,4 +1,4 @@
-import "./dahsboard.component.scss"
+import "./dashboard.component.scss"
 import RecipeComponent from "../recipe/recipe.component.tsx";
 import SidebarComponent from "../sidebar/sidebar.component.tsx";
 

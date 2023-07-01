@@ -1,5 +1,6 @@
-
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
   font-family: Inter, sans-serif;
 }
@@ -7,7 +8,7 @@
 .grid-container {
   display: grid;
   grid-template-areas: "header header"
-  "sidebar main";
+    "sidebar main";
   grid-template-columns: 1fr 5fr;
   grid-template-rows: 1fr 5fr;
   height: 100vh;
@@ -135,7 +136,5 @@
 .recipes-row {
   display: flex;
   justify-content: space-between;
-
   width: 100%;
-
 }

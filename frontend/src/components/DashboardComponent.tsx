@@ -1,4 +1,4 @@
-import "./dashboard/dahsboard.component.scss"
+import "./dashboard/dashboard.component.scss"
 import RecipeComponent from "./recipe/recipe.component"
 
 const DashboardComponent = () => {
@@ -8,12 +8,12 @@ const DashboardComponent = () => {
                 today's feature
             </h2>
             <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-16">
-                <RecipeComponent></RecipeComponent>
-                <RecipeComponent></RecipeComponent>
-                <RecipeComponent></RecipeComponent>
-                <RecipeComponent></RecipeComponent>
-                <RecipeComponent></RecipeComponent>
-                <RecipeComponent></RecipeComponent>
+                <RecipeComponent />
+                <RecipeComponent />
+                <RecipeComponent />
+                <RecipeComponent />
+                <RecipeComponent />
+                <RecipeComponent />
             </div>
         </div>
     )
