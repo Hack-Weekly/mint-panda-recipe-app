@@ -11,12 +11,6 @@
   width: 150px;
 }
 
-@for $i from 1 through 6 {
-  .gap-#{$i} {
-    gap: #{$i}rem;
-  }
-}
-
 .icons {
   display: flex;
   justify-content: space-between;
