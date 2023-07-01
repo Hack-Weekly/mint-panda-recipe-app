@@ -1,3 +1,4 @@
+import Search from "../components/Search"
 import Sidebar from "../components/Sidebar"
 
 const Dashboard = () => {
@@ -5,6 +6,7 @@ const Dashboard = () => {
     <>
       <Sidebar />
       Render list of recipe cards here
+      <Search />
     </>
   )
 }
