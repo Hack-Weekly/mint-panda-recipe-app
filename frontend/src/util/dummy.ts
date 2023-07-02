@@ -1,75 +1,67 @@
-interface BackendRecipe {
-  id: string,
-  title: string,
-  tags: {
-    id: string
-    name: string
-  }[],
-  ingredients: {
-    id: string
-    name: string,
-    amount: number
-  }[],
-  instructions: string,
-  imageUrl: string,
-  serving: number
+const dummyRecipe = {
+  "id": "1",
+  "title": "Delicious Pasta",
+  "serving": 4,
+  "instruction": "1. Cook the pasta\n2. Prepare the sauce\n3. Mix pasta and sauce\n4. Serve hot",
+  "imageurl": "https://example.com/delicious-pasta.jpg",
+  "created_at": "2023-06-01T10:00:00Z",
+  "updated_at": "2023-06-15T15:30:00Z",
+  "recipe_ingredient_link": [
+    {
+      "id": "ingredient1",
+      "name": "Pasta",
+      "amount": 250
+    },
+    {
+      "id": "ingredient2",
+      "name": "Tomato Sauce",
+      "amount": 500
+    },
+    {
+      "id": "ingredient3",
+      "name": "Cheese",
+      "amount": 100
+    }
+  ],
+  "recipe_tag_link": [
+    {
+      "id": "tag1",
+      "name": "Italian"
+    },
+    {
+      "id": "tag2",
+      "name": "Pasta"
+    }
+  ]
 }
 
-interface BackendRecipeList {
-  id: string,
-  title: string,
-  tags: {
-    id: string
-    name: string
-  }[],
-  imageUrl: string,
-  serving: number,
-  cookTime: string | number,
-  likes: string
-}
-
-
-const dummyRecipe: BackendRecipe = {
-  id: "1",
-  title: "Dummy Recipe 1",
-  tags: [
-    { id: "tag1", name: "Tag 1" },
-    { id: "tag2", name: "Tag 2" },
+const dummyRecipeList = {
+  "results": [
+    {
+      "id": "1",
+      "title": "Recipe 1",
+      "serving": 4,
+      "imageurl": "https://example.com/recipe1.jpg",
+      "created_at": "2023-06-01T10:00:00Z",
+      "updated_at": "2023-06-15T15:30:00Z"
+    },
+    {
+      "id": "2",
+      "title": "Recipe 2",
+      "serving": 2,
+      "imageurl": "https://example.com/recipe2.jpg",
+      "created_at": "2023-06-05T14:30:00Z",
+      "updated_at": "2023-06-20T09:45:00Z"
+    }
   ],
-  ingredients: [
-    { id: "ing1", name: "Ingredient 1", amount: 2 },
-    { id: "ing2", name: "Ingredient 2", amount: 3 },
-  ],
-  instructions: "Dummy recipe instructions",
-  imageUrl: "https://example.com/recipe.jpg",
-  serving: 4,
-};
-
-const dummyRecipeList: BackendRecipeList[] = [
-  {
-    id: "1",
-    title: "Dummy Recipe 1",
-    tags: [
-      { id: "tag1", name: "Tag 1" },
-      { id: "tag2", name: "Tag 2" },
-    ],
-    imageUrl: "https://example.com/recipe.jpg",
-    serving: 4,
-    cookTime: "30 minutes",
-    likes: "15",
-  },
-  {
-    id: "2",
-    title: "Dummy Recipe 2",
-    tags: [
-      { id: "tag3", name: "Tag 3" },
-      { id: "tag4", name: "Tag 4" },
-    ],
-    imageUrl: "https://example.com/recipe2.jpg",
-    serving: 2,
-    cookTime: "45 minutes",
-    likes: "10",
+  "pageData": {
+    "page": 1,
+    "pageSize": 10,
+    "totalItemsCount": 20,
+    "totalPageCount": 2,
+    "hasPreviousPage": false,
+    "hasNextPage": true
   }
-]
+}
 
 export { dummyRecipe, dummyRecipeList }
