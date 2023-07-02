@@ -8,12 +8,14 @@ import Dashboard from "./pages/dashboard/Dashboard.tsx";
 import RecipeDetail from "./pages/single-recipe/RecipeDetail.tsx";
 import { loader as recipesLoader } from "./pages/dashboard/loader.ts";
 import { loader as recipeLoader } from "./pages/single-recipe/loader.ts";
+import ErrorPage from "./pages/Error.tsx";
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
       element: <App />,
+      errorElement: <ErrorPage />,
       children: [
         {
           index: true,

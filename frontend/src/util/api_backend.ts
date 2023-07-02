@@ -1,7 +1,15 @@
-import { dummyRecipe, dummyRecipeList } from "./dummy"
+import { dummyRecipe } from "./dummy"
+import axios from "axios"
+axios.defaults.withCredentials = true;
+
+const API_ROOT = "http://localhost:5000"
 
 export const getRecipes = async () => {
-  return dummyRecipeList // TODO
+  const response = await axios.get(`${API_ROOT}/api/recipes`, {
+    withCredentials: true
+  })
+  console.log(response.data)
+  return response.data
 }
 
 export const getRecipe = async (id: string) => {

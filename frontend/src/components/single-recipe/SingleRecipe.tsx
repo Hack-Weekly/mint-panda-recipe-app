@@ -1,4 +1,5 @@
 import { FullRecipe } from "../../interfaces"
+import { Link } from "react-router-dom"
 
 interface recipeDataProp {
   recipeData: FullRecipe
@@ -8,10 +9,10 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
   return (
 
     <div className="mx-auto my-2.5 w-9/12">
-      <div>
-        <button className="justify-start text-l">&lt;&lt; Go Back</button>
-      </div>
-
+      <Link to={"/"}>
+        <div className="justify-start text-l">&lt;&lt; Go Back</div>
+      </Link>
+      
       <img className="float-right rounded-3xl w-1/4 p-2 h-auto" src={recipeData.imageurl} alt={`Image of ${recipeData.title}`}></img>
 
       <div className="text-left w-9/12 pr-5 pb-4 justify-start">
@@ -74,6 +75,6 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
       </div>
 
 
-    </div>
+    </div >
   )
 }
