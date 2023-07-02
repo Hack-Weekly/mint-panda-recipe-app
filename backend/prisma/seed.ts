@@ -172,7 +172,7 @@ async function main() {
         let recipe_id = recipe_ids[getRandomInt(recipe_ids.length)].id;
         let ingredient_id = ingredient_ids[getRandomInt(ingredient_ids.length)].id;
         let tag_id = tag_ids[getRandomInt(tag_ids.length)].id;
-        let amount = getRandomInt(10);
+        let amount = getRandomInt(10) + 1;
 
         recipe_ingredient_link_data.push({
             recipe_id: recipe_id,
@@ -206,5 +206,5 @@ main()
   })
 
 function getRandomInt(max: number): number {
-    return Math.floor(Math.random() + 1 * max);
+    return Math.floor(Math.random() * max);
 }
