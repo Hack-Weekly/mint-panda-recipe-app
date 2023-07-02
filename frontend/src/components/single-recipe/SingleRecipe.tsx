@@ -21,9 +21,9 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
 
         <h2 className="text-xl text-left font-bold mb-2">Tags</h2>
 
-        <div className="flex justify-start space-x-2">
-          {recipeData.recipe_tag_link.map(tag => (
-            <div className="bg-gray-700 rounded px-2" key={tag.id}>
+        <div className="flex justify-start space-x-2 flex-wrap">
+          {recipeData.recipe_tag_link.map((tag, index) => (
+            <div className="bg-gray-700 rounded px-2 mt-1" key={`${tag.id}-${index}`}>
               <p className="text-white font-semibold">#{tag.name}</p>
             </div>
           ))}
@@ -41,8 +41,8 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
 
         <div className="pl-5">
           <ul className="list-disc">
-            {recipeData.recipe_ingredient_link.map(ingredient => (
-              <li className="mb-1" key={ingredient.id}>
+            {recipeData.recipe_ingredient_link.map((ingredient, index) => (
+              <li className="mb-1" key={`${ingredient.id}-${index}`}>
                 {ingredient.amount} {ingredient.name}
               </li>
             ))}

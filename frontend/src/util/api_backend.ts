@@ -1,4 +1,3 @@
-import { dummyRecipe } from "./dummy"
 import axios from "axios"
 axios.defaults.withCredentials = true;
 
@@ -8,12 +7,14 @@ export const getRecipes = async () => {
   const response = await axios.get(`${API_ROOT}/api/recipes`, {
     withCredentials: true
   })
-  console.log(response.data)
   return response.data
 }
 
 export const getRecipe = async (id: string) => {
-  return dummyRecipe // TODO
+  const response = await axios.get(`${API_ROOT}/api/recipes/${id}`, {
+    withCredentials: true
+  })
+  return response.data
 }
 
 export const updateRecipe = async () => {
