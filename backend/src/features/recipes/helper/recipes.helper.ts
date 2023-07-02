@@ -1,3 +1,4 @@
+import { IFilterByDate } from "../../../types/IFilterByDate";
 import { IOrderBy } from "../../../types/IOrderBy";
 
 export function orderByOptions(option?: string): IOrderBy[] {
@@ -43,4 +44,8 @@ export function orderByOptions(option?: string): IOrderBy[] {
             break;
     }
     return orderByObj;
+}
+
+export function dateStringToDateObject(fromDate: string, toDate:string): IFilterByDate | undefined {
+    return (isNaN(Date.parse(toDate)) || isNaN(Date.parse(fromDate))) ? undefined : { lte: new Date(toDate), gte: new Date(fromDate) };
 }

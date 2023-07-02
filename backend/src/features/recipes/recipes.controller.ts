@@ -6,21 +6,25 @@ import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
 import { IOrderBy } from "../../types/IOrderBy";
-import { orderByOptions } from "./helper/recipes.helper";
+import { dateStringToDateObject, orderByOptions } from "./helper/recipes.helper";
+import { IFilterByDate } from "../../types/IFilterByDate";
 
 interface RequestQuery {
     page: number,
     pageSize: number,
     search?: string,
-    orderBy?: string
+    orderBy?: string,
+    FromDate?: string,
+    ToDate?: string
 }
 
 export const getRecipes = async (req: Request<{}, {}, {}, RequestQuery>, res: Response) => {
-    const {page = 1, pageSize = 10, search, orderBy} = req.query
+    const {page = 1, pageSize = 10, search, orderBy, FromDate="", ToDate=""} = req.query
 
     let orderByObj: IOrderBy[] = orderByOptions(orderBy);
+    let filterByDateObj: IFilterByDate | undefined = dateStringToDateObject(FromDate, ToDate);
     
-    const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, orderByObj, search);
+    const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, search, orderByObj, filterByDateObj);
     
     const pageList = PageList.GetPageList(results, page, pageSize, totalItemsCount)
     
