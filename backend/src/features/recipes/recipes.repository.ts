@@ -4,9 +4,11 @@ import { UpdateIngredientsDto } from "../ingredients/dtos/UpdateIngredients.dto"
 import { RecipeListDto } from "./dtos/RecipeList.dto";
 import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { randomUUID } from "crypto";
+import { IOrderBy } from "../../types/IOrderBy";
+
 const client = new PrismaClient();
 
-export const getRecipes = async (page: number = 1, pageSize: number = 10, search?: string): Promise<[RecipeListDto[], number]> => {
+export const getRecipes = async (page: number = 1, pageSize: number = 10, orderBy?: IOrderBy[], search?: string, ): Promise<[RecipeListDto[], number]> => {
 
     const results = await client.recipe.findMany({
         select: {
@@ -22,6 +24,7 @@ export const getRecipes = async (page: number = 1, pageSize: number = 10, search
                 search
             }
         },
+        orderBy: orderBy,
         skip: Number(pageSize * (page - 1)),
         take: Number(pageSize)
     });
