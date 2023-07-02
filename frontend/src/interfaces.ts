@@ -1,4 +1,4 @@
-export interface SingleRecipe {
+export interface FullRecipe {
   id: string;
   title: string;
   serving: number;
@@ -6,17 +6,17 @@ export interface SingleRecipe {
   imageurl: string;
   created_at: string | Date;
   updated_at: string | Date;
-  recipe_ingredient_link: SingleRecipeIngredientLink[];
-  recipe_tag_link: SingleRecipeTagLink[];
+  recipe_ingredient_link: FullRecipeIngredientLink[];
+  recipe_tag_link: FullRecipeTagLink[];
 }
 
-export interface SingleRecipeIngredientLink {
+export interface FullRecipeIngredientLink {
   id: string;
   name: string;
   amount: number;
 }
 
-export interface SingleRecipeTagLink {
+export interface FullRecipeTagLink {
   id: string;
   name: string;
 }

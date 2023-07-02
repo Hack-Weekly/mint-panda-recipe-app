@@ -1,7 +1,7 @@
-import { SingleRecipe } from "../../interfaces"
+import { FullRecipe } from "../../interfaces"
 
 interface recipeDataProp {
-  recipeData: SingleRecipe
+  recipeData: FullRecipe
 }
 
 export default function SingleRecipe({ recipeData }: recipeDataProp) {

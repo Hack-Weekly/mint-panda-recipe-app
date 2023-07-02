@@ -1,9 +1,9 @@
 import { useLoaderData } from 'react-router-dom';
 import SingleRecipe from '../../components/single-recipe/SingleRecipe';
-import { SingleRecipe as SingleRecipeInterface } from '../../interfaces';
+import { FullRecipe } from '../../interfaces';
 
 function RecipeDetail() {
-  const recipeData = useLoaderData() as SingleRecipeInterface;
+  const recipeData = useLoaderData() as FullRecipe;
 
   return (
     <>

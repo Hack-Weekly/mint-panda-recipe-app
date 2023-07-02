@@ -1,6 +1,6 @@
-import { RecipeList, SingleRecipe } from "../interfaces"
+import { RecipeList, FullRecipe } from "../interfaces"
 
-const dummyRecipe: SingleRecipe = {
+const dummyRecipe: FullRecipe = {
   "id": "1",
   "title": "Delicious Pasta",
   "serving": 4,
