@@ -6,7 +6,7 @@ export default function SingleRecipe({ recipeData }) {
         <button className="justify-start text-l">&lt;&lt; Go Back</button>
       </div>
 
-      <img className="float-right rounded-3xl w-1/4 p-2 h-auto" src={recipeData.imageurl} alt="recipe"></img>
+      <img className="float-right rounded-3xl w-1/4 p-2 h-auto" src={recipeData.imageurl} alt={`Image of ${recipeData.title}`}></img>
 
       <div className="text-left w-9/12 pr-5 pb-4 justify-start">
         <h1 className="text-3xl font-bold mt-4 mb-2">{recipeData.title}</h1>
@@ -36,7 +36,7 @@ export default function SingleRecipe({ recipeData }) {
           <ul className="list-disc">
             {recipeData.recipe_ingredient_link.map(ingredient => (
               <li className="mb-1" key={ingredient.id}>
-                {ingredient.amount} lb {ingredient.name}
+                {ingredient.amount} {ingredient.name}
               </li>
             ))}
           </ul>
