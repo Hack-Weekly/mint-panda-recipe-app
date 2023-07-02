@@ -6,6 +6,7 @@ import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
 import { IOrderBy } from "../../types/IOrderBy";
+import { orderByOptions } from "./helper/recipes.helper";
 
 interface RequestQuery {
     page: number,
@@ -17,47 +18,7 @@ interface RequestQuery {
 export const getRecipes = async (req: Request<{}, {}, {}, RequestQuery>, res: Response) => {
     const {page = 1, pageSize = 10, search, orderBy} = req.query
 
-    let orderByObj: IOrderBy[] = [];
-    if (orderBy != undefined) {
-        switch (orderBy) { 
-            case "titleAsc":
-                orderByObj.push({
-                    title: "asc"
-                });
-                break;
-
-            case "titleDesc":
-                orderByObj.push({
-                    title: "desc"
-                });
-                console.log("ok");
-                break;
-
-            case "createdAsc":
-                orderByObj.push({
-                    created_at: "asc"
-                });
-                break;
-
-            case "createdDesc":
-                orderByObj.push({
-                    created_at: "desc"
-                });
-                break;
-
-            case "updatedAsc":
-                orderByObj.push({
-                    updated_at: "asc"
-                });
-                break;
-
-            case "updatedDesc":
-                orderByObj.push({
-                    updated_at: "desc"
-                });
-                break;
-        }
-    }
+    let orderByObj: IOrderBy[] = orderByOptions(orderBy);
     
     const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, orderByObj, search);
     
