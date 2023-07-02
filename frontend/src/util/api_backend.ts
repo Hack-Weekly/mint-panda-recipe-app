@@ -4,7 +4,7 @@ export const getRecipes = async () => {
   return dummyRecipeList // TODO
 }
 
-export const getRecipe = async () => {
+export const getRecipe = async (id) => {
   return dummyRecipe // TODO
 }
 

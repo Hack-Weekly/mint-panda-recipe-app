@@ -4,7 +4,9 @@ import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewRecipe from "./pages/NewRecipe.tsx";
-import Dashboard from "./pages/Dashboard.tsx";
+import Dashboard from "./pages/dashboard/Dashboard.tsx";
+import SingleRecipe from "./components/single-recipe/SingleRecipe.tsx";
+import { loader as recipesLoader } from "./pages/dashboard/loader.ts";
 
 const router = createBrowserRouter(
   [
@@ -15,11 +17,16 @@ const router = createBrowserRouter(
         {
           index: true,
           element: <Dashboard />,
+          loader: recipesLoader
         },
         {
           path: "/recipe/new",
           element: <NewRecipe />,
         },
+        {
+          path: "recipe/:id",
+          element: <SingleRecipe />
+        }
       ],
     },
   ],
