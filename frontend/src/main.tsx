@@ -5,8 +5,9 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NewRecipe from "./pages/NewRecipe.tsx";
 import Dashboard from "./pages/dashboard/Dashboard.tsx";
-import SingleRecipe from "./components/single-recipe/SingleRecipe.tsx";
+import RecipeDetail from "./pages/single-recipe/RecipeDetail.tsx";
 import { loader as recipesLoader } from "./pages/dashboard/loader.ts";
+import { loader as recipeLoader } from "./pages/single-recipe/loader.ts";
 
 const router = createBrowserRouter(
   [
@@ -25,7 +26,8 @@ const router = createBrowserRouter(
         },
         {
           path: "recipe/:id",
-          element: <SingleRecipe />
+          element: <RecipeDetail />,
+          loader: recipeLoader
         }
       ],
     },

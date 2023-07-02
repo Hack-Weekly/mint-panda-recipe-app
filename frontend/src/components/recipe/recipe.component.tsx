@@ -1,4 +1,3 @@
-import image from "../../assets/images/image-placeholder.png";
 import "./recipe.component.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
