@@ -1,8 +1,13 @@
 import "./dashboard/dashboard.component.scss"
 import RecipeComponent from "./recipe/recipe.component"
 import { Link } from "react-router-dom"
+import { RecipeList } from "../interfaces"
 
-const DashboardComponent = ({ recipesData }) => {
+interface RecipeDataProp {
+    recipesData: RecipeList
+}
+
+const DashboardComponent = ({ recipesData }: RecipeDataProp) => {
     return (
         <div className="main padding-5">
             <h2 className="h4 border-b-4 border-b-black">

@@ -1,4 +1,10 @@
-export default function SingleRecipe({ recipeData }) {
+import { SingleRecipe } from "../../interfaces"
+
+interface recipeDataProp {
+  recipeData: SingleRecipe
+}
+
+export default function SingleRecipe({ recipeData }: recipeDataProp) {
   return (
 
     <div className="mx-auto my-2.5 w-9/12">

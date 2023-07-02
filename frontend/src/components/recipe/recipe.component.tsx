@@ -5,8 +5,13 @@ import {
     faHeart,
     faPlateWheat,
 } from "@fortawesome/free-solid-svg-icons";
+import { Recipe } from "../../interfaces";
 
-const RecipeComponent = ({ recipe }) => {
+interface RecipeProp {
+    recipe: Recipe
+}
+
+const RecipeComponent = ({ recipe }: RecipeProp) => {
     return (
         <div
             className="rounded-3xl drop-shadow-xl p-5 hover:cursor-pointer"
