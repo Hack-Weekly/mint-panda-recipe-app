@@ -29,7 +29,7 @@ export const getRecipesById = async (req: Request<{id: string}>, res: Response) 
     const result = await recipesRepository.getRecipesById(id);
 
     if(!result)
-        res
+        return res
             .status(StatusCodes.NOT_FOUND)
             .send({message : `Recipe with Id '${id}' was not found.`})
 
@@ -59,13 +59,13 @@ export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Respon
     const data = req.body;
 
     if(data.ingredients.length === 0)
-        res.status(StatusCodes.BAD_REQUEST).send({
+        return res.status(StatusCodes.BAD_REQUEST).send({
             status: StatusCodes.BAD_REQUEST,
             message: "Recipe Ingredients should not be empty"
         })
 
     if(data.tags.length === 0)
-        res.status(StatusCodes.BAD_REQUEST).send({
+        return res.status(StatusCodes.BAD_REQUEST).send({
             status: StatusCodes.BAD_REQUEST,
             message: "Recipe Tags should not be empty"
         })
@@ -85,7 +85,7 @@ export const deleteRecipeById = async (req: Request<{id: string}>, res: Response
     const result = await recipesRepository.deleteRecipeById(id);
 
     if(!result)
-        res
+        return res
             .status(StatusCodes.NOT_FOUND)
             .send({message : `Recipes with Id '${id}' was not found.`})
 
