@@ -7,6 +7,8 @@ import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
 import { dateStringToDateObject, orderByOptions } from "./helper/recipes.helper";
 import { IFilterByDate } from "../../types/IFilterByDate";
+import { validateOrReject } from "class-validator";
+import { AddRecipe, DeleteRecipeById } from "../../validator/recipes.validator";
 
 interface RequestQuery {
     page: number,
@@ -67,17 +69,29 @@ export const getRecipesById = async (req: Request<{id: string}>, res: Response) 
 export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Response) => {
     const data = req.body;
 
-    if(data.ingredients.length === 0)
-        res.status(StatusCodes.BAD_REQUEST).send({
-            status: StatusCodes.BAD_REQUEST,
-            message: "Recipe Ingredients should not be empty"
-        })
+    let addRecipe = new AddRecipe();
+    addRecipe.ingredient = data.ingredients;
+    addRecipe.tag = data.tags
 
-    if(data.tags.length === 0)
-        res.status(StatusCodes.BAD_REQUEST).send({
-            status: StatusCodes.BAD_REQUEST,
-            message: "Recipe Tags should not be empty"
-        })
+    try {
+        await validateOrReject(addRecipe)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+
+    // if(data.ingredients.length === 0)
+    //     res.status(StatusCodes.BAD_REQUEST).send({
+    //         status: StatusCodes.BAD_REQUEST,
+    //         message: "Recipe Ingredients should not be empty"
+    //     })
+
+    // if(data.tags.length === 0)
+    //     res.status(StatusCodes.BAD_REQUEST).send({
+    //         status: StatusCodes.BAD_REQUEST,
+    //         message: "Recipe Tags should not be empty"
+    //     })
     
     const result = await recipesRepository.addRecipe(data);
 
@@ -91,6 +105,18 @@ export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Respon
 
 export const deleteRecipeById = async (req: Request<{id: string}>, res: Response) => {
     const id = req.params.id ;
+
+    let deleteRecipeById = new DeleteRecipeById();
+    deleteRecipeById.id = id;
+
+    try {
+        await validateOrReject(deleteRecipeById)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+
     const result = await recipesRepository.deleteRecipeById(id);
 
     if(!result)
