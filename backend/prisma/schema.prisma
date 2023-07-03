@@ -20,7 +20,7 @@ model recipe {
   serving                Int
   instruction            String
   imageurl               String?
-  like                   Int
+  like                   Int                      @default(0)
   recipe_ingredient_link recipe_ingredient_link[]
   recipe_tag_link        recipe_tag_link[]
   created_at             DateTime
