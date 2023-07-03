@@ -5,13 +5,19 @@ import { PageList } from "../../models/PageData";
 import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
+<<<<<<< Updated upstream
 import { IOrderBy } from "../../types/IOrderBy";
 import { orderByOptions } from "./helper/recipes.helper";
+=======
+import { dateStringToDateObject, orderByOptions } from "./helper/recipes.helper";
+import { IFilterByDate } from "../../types/IFilterByDate";
+>>>>>>> Stashed changes
 
 interface RequestQuery {
     page: number,
     pageSize: number,
     search?: string,
+<<<<<<< Updated upstream
     orderBy?: string
 }
 
@@ -19,6 +25,19 @@ export const getRecipes = async (req: Request<{}, {}, {}, RequestQuery>, res: Re
     const {page = 1, pageSize = 10, search, orderBy} = req.query
 
     let orderByObj: IOrderBy[] = orderByOptions(orderBy);
+=======
+    orderBy?: string,
+    orderByPrecedence?: string,
+    FromDate?: string,
+    ToDate?: string
+}
+
+export const getRecipes = async (req: Request<{}, {}, {}, RequestQuery>, res: Response) => {
+    const {page = 1, pageSize = 10, search, orderBy, orderByPrecedence, FromDate="", ToDate=""} = req.query
+
+    let orderByObj: Record<string, string> = orderByOptions(orderBy, orderByPrecedence);
+    let filterByDateObj: IFilterByDate | undefined = dateStringToDateObject(FromDate, ToDate);
+>>>>>>> Stashed changes
     
     const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, orderByObj, search);
     
