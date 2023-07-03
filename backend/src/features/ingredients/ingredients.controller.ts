@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import * as ingredientsRepository from './ingredients.repository'
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { validateOrReject } from "class-validator";
+import { AddIngredients, DeleteIngredients, UpdateIngredients } from "../../validator/ingredients.validator";
 
 export const getIngredients = async (req: Request, res: Response) => {
     const results = await ingredientsRepository.getIngredients();
@@ -29,6 +31,17 @@ export const getIngredientById = async (req: Request, res: Response) => {
 export const addIngredients = async (req: Request, res: Response) => {
     const data = req.body;
 
+    let addIngredients = new AddIngredients();
+    addIngredients.name = data.name;
+
+    try {
+        await validateOrReject(addIngredients)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+        
     const result = await ingredientsRepository.addIngredients(data);
 
     res
@@ -42,6 +55,18 @@ export const addIngredients = async (req: Request, res: Response) => {
 export const updateIngredients = async (req: Request, res: Response) => {
     const id = req.params.id ;
     const data = req.body;
+
+    let updateIngredients = new UpdateIngredients();
+    updateIngredients.id = id;
+    updateIngredients.name = data.name;
+
+    try {
+        await validateOrReject(addIngredients)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
 
     const result = await ingredientsRepository.updateIngredientById(id, data);
 
@@ -58,6 +83,18 @@ export const updateIngredients = async (req: Request, res: Response) => {
 
 export const deleteIngredients = async (req: Request, res: Response) => {
     const id = req.params.id ;
+
+    let deleteIngredients = new DeleteIngredients();
+    deleteIngredients.id = id;
+
+    try {
+        await validateOrReject(deleteIngredients)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+
     const result = await ingredientsRepository.deleteIngredientById(id);
 
     if(!result)
