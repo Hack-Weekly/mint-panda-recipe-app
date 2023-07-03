@@ -1,33 +1,22 @@
 import {
-    validate,
-    validateOrReject,
-    Contains,
-    IsInt,
-    Length,
-    IsEmail,
-    IsFQDN,
-    IsDate,
-    Min,
-    Max,
-    IsString,
-    IsOptional,
-    IsIn
+    MinLength,
 } from 'class-validator';
+import { MissingId, MissingIngredient } from './validator-message';
 
 export class AddIngredients {
-    @Length(1)
+    @MinLength(1, MissingIngredient)
     name?: string
 }
 
 export class UpdateIngredients {
-    @Length(1)
+    @MinLength(1, MissingIngredient)
     name?: string
 
-    @Length(1)
+    @MinLength(1, MissingId)
     id?: string
 }
 
 export class DeleteIngredients {
-    @Length(1)
+    @MinLength(1, MissingId)
     id?: string
 }

@@ -1,22 +1,14 @@
 import {
-    validate,
-    validateOrReject,
-    Contains,
-    IsInt,
-    Length,
-    IsEmail,
-    IsFQDN,
-    IsDate,
-    Min,
-    Max,
+    MinLength,
 } from 'class-validator';
+import { MissingId, MissingTag } from './validator-message';
 
 export class AddTag {
-    @Length(1)
+    @MinLength(1, MissingTag)
     name?: string
 }
 
 export class DeleteTag {
-    @Length(1)
+    @MinLength(1, MissingId)
     id?: string
 }

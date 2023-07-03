@@ -2,24 +2,25 @@ import {
     ArrayMinSize,
     IsString,
     IsArray,
-    Length,
+    MinLength,
 } from 'class-validator';
 import { AddRecipeTagsDto } from '../features/recipes/dtos/AddRecipeTags.dto';
 import { AddRecipeIngredientsDto } from '../features/recipes/dtos/AddRecipeIngredients.dto';
+import { MissingId, MissingIngredient, NotArray, NotString } from './validator-message';
 
 export class AddRecipe {
-    @IsArray()
-    @IsString({ each: true })
-    @ArrayMinSize(1)
+    @IsArray(NotArray)
+    @IsString({ each: true, message: NotString.message })
+    @ArrayMinSize(1, MissingIngredient)
     ingredient?: AddRecipeIngredientsDto[]
 
-    @IsArray()
-    @IsString({ each: true })
-    @ArrayMinSize(1)
+    @IsArray(NotArray)
+    @IsString({ each: true, message: NotString.message })
+    @ArrayMinSize(1, MissingIngredient)
     tag?: AddRecipeTagsDto[]
 }
 
 export class DeleteRecipeById {
-    @Length(1)
+    @MinLength(1, MissingId)
     id?: string
 }
