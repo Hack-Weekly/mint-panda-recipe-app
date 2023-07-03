@@ -5,19 +5,28 @@ import { PageList } from "../../models/PageData";
 import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
+import { dateStringToDateObject, orderByOptions } from "./helper/recipes.helper";
+import { IFilterByDate } from "../../types/IFilterByDate";
 import { validateOrReject } from "class-validator";
 import { AddRecipe, DeleteRecipeById } from "../../validator/recipes.validator";
 
 interface RequestQuery {
     page: number,
     pageSize: number,
-    search?: string
+    search?: string,
+    orderBy?: string,
+    orderByPrecedence?: string,
+    FromDate?: string,
+    ToDate?: string
 }
 
-
 export const getRecipes = async (req: Request<{}, {}, {}, RequestQuery>, res: Response) => {
-    const {page = 1, pageSize = 10, search} = req.query
-    const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, search);
+    const {page = 1, pageSize = 10, search, orderBy, orderByPrecedence, FromDate="", ToDate=""} = req.query
+
+    let orderByObj: Record<string, string> = orderByOptions(orderBy, orderByPrecedence);
+    let filterByDateObj: IFilterByDate | undefined = dateStringToDateObject(FromDate, ToDate);
+    
+    const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, search, orderByObj, filterByDateObj);
     
     const pageList = PageList.GetPageList(results, page, pageSize, totalItemsCount)
     
