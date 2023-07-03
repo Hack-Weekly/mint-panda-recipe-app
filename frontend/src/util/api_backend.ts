@@ -1,5 +1,6 @@
 import axios from "axios"
 import { dummyRecipe, dummyRecipeList, dummyIngredientList } from "./dummy"
+import { RecipePost } from "../interfaces"
 
 const API_ROOT = "http://localhost:5000"
 
@@ -24,8 +25,11 @@ export const getRecipe = async (id: string) => {
     })
 }
 
-export const saveRecipe = async () => {
-  return null
+export const saveRecipe = async (recipe: RecipePost) => {
+  return axios.post(`${API_ROOT}/api/recipes`, recipe, {
+    withCredentials: true
+  }).then(response => response.data)
+  // error handled by react router
 }
 
 export const updateRecipe = async () => {

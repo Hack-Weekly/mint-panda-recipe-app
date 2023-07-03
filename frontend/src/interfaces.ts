@@ -48,3 +48,17 @@ export interface Ingredient {
   id: string,
   name: string
 }
+
+export interface RecipePost {
+  title: string,
+  imageUrl: string,
+  serving: number,
+  instruction: string,
+  tags: {
+    id: string
+  }[] | [],
+  ingredients: {
+    id: string,
+    amount: number
+  }[]
+}

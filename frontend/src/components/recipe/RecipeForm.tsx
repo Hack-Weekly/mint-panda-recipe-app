@@ -50,7 +50,11 @@ const RecipeForm = ({ ingredientsData }: IngredientList) => {
   }
 
   const removeIngredientInput = (index: number) => {
-    setIngredientsInput(ingredientsInput.filter((_item, i) => (i !== index)))
+    if (ingredientsInput.length === 1) {
+      setIngredientsInput([{ amount: "", ingredients: { value: "", label: "" } }])
+    } else {
+      setIngredientsInput(ingredientsInput.filter((_item, i) => (i !== index)))
+    }
   }
 
   return (
@@ -74,7 +78,7 @@ const RecipeForm = ({ ingredientsData }: IngredientList) => {
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">Servings per Recipe</label>
-          <input className="w-full h-7 border border-gray-300 p-2 bg-[#CCCCCC]" type="text" id="servings" placeholder="E.g. 4 servings" name="servings" />
+          <input className="w-full h-7 border border-gray-300 p-2 bg-[#CCCCCC]" type="number" id="serving" placeholder="E.g. 4 servings" name="serving" />
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">
@@ -83,7 +87,6 @@ const RecipeForm = ({ ingredientsData }: IngredientList) => {
           <button className="text-xs bg-white hover:bg-gray-100 text-gray-800 font-semibold p-1 mb-2 border border-gray-400 rounded shadow" type="button" onClick={addIngredientInput}>Add Ingredient</button>
 
           {ingredientsInput.map((input, index) => {
-            console.log(input)
             return (
               <div className="flex" key={index}>
                 <div className="w-24 mr-2">
@@ -123,7 +126,7 @@ const RecipeForm = ({ ingredientsData }: IngredientList) => {
         </div>
         <div className="mb-8">
           <label className="block mb-1 font-bold">Recipe Instructions</label>
-          <textarea className="h-2/3 w-full border border-gray-300 p-2 bg-[#CCCCCC]" id="recipeInstructions" rows={4} name="instructions"></textarea>
+          <textarea className="h-2/3 w-full border border-gray-300 p-2 bg-[#CCCCCC]" id="recipeInstruction" rows={4} name="instruction"></textarea>
         </div>
         <div className="flex justify-center">
           <button className="bg-[#BCDC79] hover:bg-[#A9C66C] text-black text-2xl font-bold py-3 px-10 rounded focus:outline-none focus:shadow-outline" type="submit">

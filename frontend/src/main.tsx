@@ -31,7 +31,7 @@ const router = createBrowserRouter(
           loader: ingredientsLoader
         },
         {
-          path: "recipe/:id",
+          path: "/recipe/:id",
           element: <RecipeDetail />,
           loader: recipeLoader
         }
