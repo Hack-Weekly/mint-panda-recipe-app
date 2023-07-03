@@ -1,4 +1,4 @@
-import { RecipeList, FullRecipe } from "../interfaces"
+import { RecipeList, FullRecipe, Ingredient } from "../interfaces"
 
 const dummyRecipe: FullRecipe = {
   "id": "1",
@@ -66,4 +66,10 @@ const dummyRecipeList: RecipeList = {
   }
 }
 
-export { dummyRecipe, dummyRecipeList }
+const dummyIngredientList: Ingredient[] = [
+  { id: "1", name: "Ingredient 1" },
+  { id: "2", name: "Ingredient 2" },
+  { id: "3", name: "Ingredient 3" }
+];
+
+export { dummyRecipe, dummyRecipeList, dummyIngredientList }

@@ -43,3 +43,8 @@ export interface PageData {
   hasPreviousPage: boolean;
   hasNextPage: boolean;
 }
+
+export interface Ingredient {
+  id: string,
+  name: string
+}
