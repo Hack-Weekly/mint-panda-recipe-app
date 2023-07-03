@@ -20,6 +20,7 @@ model recipe {
   serving                Int
   instruction            String
   imageurl               String?
+  like                   Int
   recipe_ingredient_link recipe_ingredient_link[]
   recipe_tag_link        recipe_tag_link[]
   created_at             DateTime
