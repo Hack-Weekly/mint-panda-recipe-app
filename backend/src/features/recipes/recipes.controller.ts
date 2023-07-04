@@ -5,17 +5,29 @@ import { PageList } from "../../models/PageData";
 import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
+import { dateStringToDateObject, orderByOptions } from "./helper/recipes.helper";
+import { IFilterByDate } from "../../types/IFilterByDate";
+import { validateOrReject } from "class-validator";
+import { plainToInstance } from "class-transformer";
+import { AddRecipeIngredients, AddRecipeProp, AddRecipeTags, AddRecipeValidator, DeleteRecipeByIdValidator } from "../../validator/recipes.validator";
 
 interface RequestQuery {
     page: number,
     pageSize: number,
-    search?: string
+    search?: string,
+    orderBy?: string,
+    orderByPrecedence?: string,
+    FromDate?: string,
+    ToDate?: string
 }
 
-
 export const getRecipes = async (req: Request<{}, {}, {}, RequestQuery>, res: Response) => {
-    const {page = 1, pageSize = 10, search} = req.query
-    const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, search);
+    const {page = 1, pageSize = 10, search, orderBy, orderByPrecedence, FromDate="", ToDate=""} = req.query
+
+    let orderByObj: Record<string, string> = orderByOptions(orderBy, orderByPrecedence);
+    let filterByDateObj: IFilterByDate | undefined = dateStringToDateObject(FromDate, ToDate);
+    
+    const [results, totalItemsCount] = await recipesRepository.getRecipes(page, pageSize, search, orderByObj, filterByDateObj);
     
     const pageList = PageList.GetPageList(results, page, pageSize, totalItemsCount)
     
@@ -57,18 +69,31 @@ export const getRecipesById = async (req: Request<{id: string}>, res: Response) 
 
 export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Response) => {
     const data = req.body;
+    
+    let addRecipe = new AddRecipeValidator();
+    addRecipe.data = plainToInstance(AddRecipeProp, data);
+    addRecipe.data.tags = plainToInstance(AddRecipeTags, data.tags);
+    addRecipe.data.ingredients = plainToInstance(AddRecipeIngredients, data.ingredients);
 
-    if(data.ingredients.length === 0)
-        res.status(StatusCodes.BAD_REQUEST).send({
-            status: StatusCodes.BAD_REQUEST,
-            message: "Recipe Ingredients should not be empty"
-        })
+    try {
+        await validateOrReject(addRecipe)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
 
-    if(data.tags.length === 0)
-        res.status(StatusCodes.BAD_REQUEST).send({
-            status: StatusCodes.BAD_REQUEST,
-            message: "Recipe Tags should not be empty"
-        })
+    // if(data.ingredients.length === 0)
+    //     res.status(StatusCodes.BAD_REQUEST).send({
+    //         status: StatusCodes.BAD_REQUEST,
+    //         message: "Recipe Ingredients should not be empty"
+    //     })
+
+    // if(data.tags.length === 0)
+    //     res.status(StatusCodes.BAD_REQUEST).send({
+    //         status: StatusCodes.BAD_REQUEST,
+    //         message: "Recipe Tags should not be empty"
+    //     })
     
     const result = await recipesRepository.addRecipe(data);
 
@@ -110,6 +135,18 @@ export const unlikeRecipeById = async (req: Request<{id: string}>, res: Response
 
 export const deleteRecipeById = async (req: Request<{id: string}>, res: Response) => {
     const id = req.params.id ;
+
+    let deleteRecipeById = new DeleteRecipeByIdValidator();
+    deleteRecipeById.id = id;
+
+    try {
+        await validateOrReject(deleteRecipeById)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+
     const result = await recipesRepository.deleteRecipeById(id);
 
     if(!result)

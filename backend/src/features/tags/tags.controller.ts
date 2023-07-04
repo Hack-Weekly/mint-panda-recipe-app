@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import * as tagsRepo from './tags.repository'
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { validateOrReject } from "class-validator";
+import { AddTagProp, AddTagValidator, DeleteTagValidator } from "../../validator/tags.validator";
+import { plainToInstance } from "class-transformer";
 
 export const getTags = async(req: Request, res: Response) => {
     const results = await tagsRepo.getTags();
@@ -27,6 +30,18 @@ export const getTagsById = async(req: Request, res: Response) => {
 
 export const addTag = async(req: Request, res: Response) => {
     const data = req.body;
+
+    let addTag = new AddTagValidator();
+    addTag.data = plainToInstance(AddTagProp, data)
+
+    try {
+        await validateOrReject(addTag)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+
     const result = await tagsRepo.addTag(data);
 
     if (!result) {
@@ -45,6 +60,18 @@ export const addTag = async(req: Request, res: Response) => {
 
 export const deleteTag = async(req: Request, res: Response) => {
     const id = req.params.id;
+
+    let deleteTag = new DeleteTagValidator();
+    deleteTag.id = id;
+
+    try {
+        await validateOrReject(deleteTag)
+    } catch (e) {
+        return res
+            .status(StatusCodes.BAD_REQUEST)
+            .send({message: e});
+    }
+
     const result = await tagsRepo.deleteTagById(id);
 
     if(!result)

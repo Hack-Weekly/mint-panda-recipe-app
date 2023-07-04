@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import express from 'express'
 import morgan from 'morgan';
 import cors from 'cors'
@@ -6,6 +7,7 @@ import { StatusCodes } from 'http-status-codes';
 import { ingredientsRouter } from './features/ingredients/ingredients.routes';
 import { errorHandler } from './middlewares/error-handler';
 import { recipesRouter } from './features/recipes/recipes.routes';
+import { tagsRouter } from './features/tags/tags.routes';
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ app.use(express.json())
 // Routers
 app.use("/api/ingredients", ingredientsRouter);
 app.use("/api/recipes", recipesRouter);
+app.use("/api/tags", tagsRouter);
 
 // Error Handler Middleware
 app.use(errorHandler);
