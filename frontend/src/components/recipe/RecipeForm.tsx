@@ -157,6 +157,7 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
             Submit!
           </button>
         </div>
+        {errorMessage?.id && <p className="text-sm text-red-500 mt-2">Creating your own Tag or Ingredient is not supported yet</p>}
       </Form>
     </div>
   )

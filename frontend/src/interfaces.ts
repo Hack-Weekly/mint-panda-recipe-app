@@ -74,5 +74,6 @@ export interface ErrorMessage {
   serving?: string,
   instruction?: string,
   tags?: string,
-  ingredients?: string
+  ingredients?: string,
+  id?: string
 }

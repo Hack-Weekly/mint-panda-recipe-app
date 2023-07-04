@@ -19,10 +19,10 @@ const RecipeSchema = object({
   serving: min(number(), 0, { exclusive: true }),
   instruction: size(string(), 8, 300),
   tags: nonempty(array(object({
-    id: Uuid || size(string(), 1, 30)
+    id: Uuid
   }))),
   ingredients: nonempty(array(object({
-    id: Uuid || size(string(), 1, 30),
+    id: Uuid,
     amount: min(number(), 0, { exclusive: true })
   })))
 })
@@ -69,31 +69,32 @@ export const action = async ({ request }: { request: Request }) => {
     ingredients: amountsIngredientsIdPair
   }
 
-  // try {
-  //   assert(recipe, RecipeSchema);
-  // } catch (err) {
-  //   if (err instanceof StructError) {
-  //     const inputErrors = err.failures().reduce(
-  //       (acc, { key, message }) => ({
-  //         ...acc,
-  //         [key]: message,
-  //       }),
-  //       {}
-  //     );
-  //     return json(inputErrors);
-  //   }
-  // }
+  // TODO: Check other inputs first
+  // TODO: convert non Uuid tags to Uuid tags
 
-  console.log(recipe)
+  try {
+    assert(recipe, RecipeSchema);
+  } catch (err) {
+    if (err instanceof StructError) {
+      const inputErrors = err.failures().reduce(
+        (acc, { key, message }) => ({
+          ...acc,
+          [key]: message,
+        }),
+        {}
+      );
+      return json(inputErrors);
+    }
+  }
+
+  // console.log(recipe)
 
   const response = await saveRecipe(recipe)
 
-  console.log(response)
+  // console.log(response)
 
-  // TODO: redirect to created id of new recipe, /recipes/:id
-  // response.data.message = `Created with Id: '${result.id}'
-  // extract result.id
-  // const resultId = response.message.match(/'([^']+)'/)?.[1]?.trim();
+  // redirect user to newly created recipe if successful
+  const resultId = response.message.match(/'([^']+)'/)?.[1]?.trim();
 
-  return redirect("/");
+  return redirect(`/recipe/${resultId}`);
 }
