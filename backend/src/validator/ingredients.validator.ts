@@ -1,22 +1,39 @@
 import {
-    MinLength,
+    MinLength, 
+    ValidateNested,
+    IsString
 } from 'class-validator';
-import { MissingId, MissingIngredient } from './validator-message';
+import { MissingId, MissingIngredient, MissingProp, NotString } from './validator-message';
+import { AddIngredientsDto } from '../features/ingredients/dtos/AddIngredients.dto';
+import { UpdateIngredientsDto } from '../features/ingredients/dtos/UpdateIngredients.dto';
 
-export class AddIngredients {
-    @MinLength(1, MissingIngredient)
-    name?: string
+export class AddIngredientValidator {
+    @ValidateNested()
+    data!: AddIngredientProp
 }
 
-export class UpdateIngredients {
-    @MinLength(1, MissingIngredient)
-    name?: string
+export class AddIngredientProp implements AddIngredientsDto {
+    @IsString(NotString)
+    @MinLength(1, MissingProp)
+    name!: string
+}
 
-    @MinLength(1, MissingId)
+export class UpdateIngredientValidator {
+    @ValidateNested()
+    data!: UpdateIngredientProp
+
+    @IsString(NotString)
+    @MinLength(1, MissingProp)
     id?: string
 }
 
-export class DeleteIngredients {
+export class UpdateIngredientProp implements UpdateIngredientsDto {
+    @IsString(NotString)
+    @MinLength(1, MissingProp)
+    name!: string
+}
+
+export class DeleteIngredientValidator {
     @MinLength(1, MissingId)
     id?: string
 }

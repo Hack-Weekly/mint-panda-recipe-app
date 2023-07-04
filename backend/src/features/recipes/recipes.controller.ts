@@ -6,7 +6,8 @@ import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { IngredientDetailsDto } from "../ingredients/dtos/IngredientDetailsDto";
 import { TagDetailsDto } from "../tags/dtos/TagDetailsDto";
 import { validateOrReject } from "class-validator";
-import { AddRecipe, DeleteRecipeById } from "../../validator/recipes.validator";
+import { plainToInstance } from "class-transformer";
+import { AddRecipeIngredients, AddRecipeProp, AddRecipeTags, AddRecipeValidator, DeleteRecipeByIdValidator } from "../../validator/recipes.validator";
 
 interface RequestQuery {
     page: number,
@@ -59,10 +60,11 @@ export const getRecipesById = async (req: Request<{id: string}>, res: Response) 
 
 export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Response) => {
     const data = req.body;
-
-    let addRecipe = new AddRecipe();
-    addRecipe.ingredient = data.ingredients;
-    addRecipe.tag = data.tags
+    
+    let addRecipe = new AddRecipeValidator();
+    addRecipe.data = plainToInstance(AddRecipeProp, data);
+    addRecipe.data.tags = plainToInstance(AddRecipeTags, data.tags);
+    addRecipe.data.ingredients = plainToInstance(AddRecipeIngredients, data.ingredients);
 
     try {
         await validateOrReject(addRecipe)
@@ -97,7 +99,7 @@ export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Respon
 export const deleteRecipeById = async (req: Request<{id: string}>, res: Response) => {
     const id = req.params.id ;
 
-    let deleteRecipeById = new DeleteRecipeById();
+    let deleteRecipeById = new DeleteRecipeByIdValidator();
     deleteRecipeById.id = id;
 
     try {

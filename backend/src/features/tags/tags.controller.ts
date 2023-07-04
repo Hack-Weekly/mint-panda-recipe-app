@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import * as tagsRepo from './tags.repository'
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { validateOrReject } from "class-validator";
-import { AddTag, DeleteTag } from "../../validator/tags.validator";
+import { AddTagProp, AddTagValidator, DeleteTagValidator } from "../../validator/tags.validator";
+import { plainToInstance } from "class-transformer";
 
 export const getTags = async(req: Request, res: Response) => {
     const results = await tagsRepo.getTags();
@@ -30,8 +31,8 @@ export const getTagsById = async(req: Request, res: Response) => {
 export const addTag = async(req: Request, res: Response) => {
     const data = req.body;
 
-    let addTag = new AddTag();
-    addTag.name = data.name;
+    let addTag = new AddTagValidator();
+    addTag.data = plainToInstance(AddTagProp, data)
 
     try {
         await validateOrReject(addTag)
@@ -60,7 +61,7 @@ export const addTag = async(req: Request, res: Response) => {
 export const deleteTag = async(req: Request, res: Response) => {
     const id = req.params.id;
 
-    let deleteTag = new DeleteTag();
+    let deleteTag = new DeleteTagValidator();
     deleteTag.id = id;
 
     try {
