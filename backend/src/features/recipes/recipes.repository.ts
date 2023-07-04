@@ -16,6 +16,7 @@ export const getRecipes = async (page: number = 1, pageSize: number = 10, search
             title: true,
             serving: true,
             imageurl: true,
+            like: true,
             created_at: true,
             updated_at: true
         },
@@ -109,6 +110,46 @@ export const addRecipe = async (newRecipe: AddRecipesDto) => {
     })
 
     return result;
+}
+
+export const likeRecipeById = async (id: string) => {
+    const recipe = await getRecipesById(id);
+
+    if (!recipe)
+        return null;
+
+        const result = await client.recipe.update(
+            {
+                where: {
+                    id
+                },
+                data: {
+                    like: recipe.like + 1
+                }
+            }
+        )
+
+    return result.id;
+}
+
+export const unlikeRecipeById = async (id: string) => {
+    const recipe = await getRecipesById(id);
+
+    if (!recipe)
+        return null;
+
+    const result = await client.recipe.update(
+        {
+            where: {
+                id
+            },
+            data: {
+                like: recipe.like - 1
+            }
+        }
+    )
+
+    return result.id;
 }
 
 export const deleteRecipeById = async (id: string) => {
