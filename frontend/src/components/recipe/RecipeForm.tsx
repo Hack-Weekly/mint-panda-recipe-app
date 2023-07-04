@@ -1,10 +1,14 @@
 import { Form } from "react-router-dom"
-import { Ingredient } from "../../interfaces"
+import { Ingredient, Tag } from "../../interfaces"
 import { useEffect, useState } from "react"
 import CreatableSelect from "react-select/creatable"
 
 interface IngredientList {
   ingredientsData: Ingredient[]
+}
+
+interface TagList {
+  tagsData: Tag[]
 }
 
 interface IngredientOption {
@@ -22,13 +26,17 @@ interface InputEvent {
   value: string | IngredientOption | null
 }
 
-const RecipeForm = ({ ingredientsData }: IngredientList) => {
+const RecipeForm = ({ ingredientsData, tagsData }: IngredientList & TagList) => {
   const [ingredients, setIngredients] = useState<readonly IngredientOption[]>([])
+  const [tags, setTags] = useState<readonly IngredientOption[]>([])
   const [ingredientsInput, setIngredientsInput] = useState<IngredientInput[]>([{ amount: "", ingredients: { value: "", label: "" } }])
 
   useEffect(() => {
     setIngredients(ingredientsData.map(ingredientData => ({ value: ingredientData["id"], label: ingredientData["name"] })))
-  }, [ingredientsData])
+    setTags(tagsData.map(tagData => ({ value: tagData["id"], label: tagData["name"] })))
+    // This only needs to load once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleIngredientsInputChange = (index: number, event: InputEvent) => {
     const data: IngredientInput[] = [...ingredientsInput]
@@ -74,7 +82,13 @@ const RecipeForm = ({ ingredientsData }: IngredientList) => {
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">Recipe Tags</label>
-          <input className="w-full h-7 border border-gray-300 p-2 bg-[#CCCCCC]" type="text" id="recipeTags" placeholder="E.g. Fun, quick, easy" name="tags" />
+          <CreatableSelect
+            isMulti
+            isClearable
+            options={tags}
+            placeholder="E.g. Quick, easy, vegan"
+            name="tags"
+          />
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">Servings per Recipe</label>

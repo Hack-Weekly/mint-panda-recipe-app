@@ -56,9 +56,16 @@ export interface RecipePost {
   instruction: string,
   tags: {
     id: string
-  }[] | [],
+  }[],
   ingredients: {
     id: string,
     amount: number
   }[]
 }
+
+export interface Tag {
+  id: string,
+  name: string
+}
+
+

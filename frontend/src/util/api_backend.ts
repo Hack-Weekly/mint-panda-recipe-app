@@ -1,5 +1,5 @@
 import axios from "axios"
-import { dummyRecipe, dummyRecipeList, dummyIngredientList } from "./dummy"
+import { dummyRecipe, dummyRecipeList, dummyIngredientList, dummyTags } from "./dummy"
 import { RecipePost } from "../interfaces"
 
 const API_ROOT = "http://localhost:5000"
@@ -45,5 +45,16 @@ export const getIngredients = async () => {
     .catch(error => {
       console.log(error)
       return dummyIngredientList
+    })
+}
+
+export const getTags = async () => {
+  return axios.get(`${API_ROOT}/api/tags`, {
+    withCredentials: true
+  })
+    .then(response => response.data)
+    .catch(error => {
+      console.log(error)
+      return dummyTags
     })
 }
