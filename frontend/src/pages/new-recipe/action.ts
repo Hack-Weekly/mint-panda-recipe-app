@@ -69,26 +69,26 @@ export const action = async ({ request }: { request: Request }) => {
     ingredients: amountsIngredientsIdPair
   }
 
-  try {
-    assert(recipe, RecipeSchema);
-  } catch (err) {
-    if (err instanceof StructError) {
-      const inputErrors = err.failures().reduce(
-        (acc, { key, message }) => ({
-          ...acc,
-          [key]: message,
-        }),
-        {}
-      );
-      return json(inputErrors);
-    }
-  }
+  // try {
+  //   assert(recipe, RecipeSchema);
+  // } catch (err) {
+  //   if (err instanceof StructError) {
+  //     const inputErrors = err.failures().reduce(
+  //       (acc, { key, message }) => ({
+  //         ...acc,
+  //         [key]: message,
+  //       }),
+  //       {}
+  //     );
+  //     return json(inputErrors);
+  //   }
+  // }
 
   console.log(recipe)
 
-  // const response = await saveRecipe(recipe)
+  const response = await saveRecipe(recipe)
 
-  // console.log(response)
+  console.log(response)
 
   // TODO: redirect to created id of new recipe, /recipes/:id
   // response.data.message = `Created with Id: '${result.id}'

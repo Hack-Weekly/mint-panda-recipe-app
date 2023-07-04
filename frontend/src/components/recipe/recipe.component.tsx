@@ -17,8 +17,8 @@ const RecipeComponent = ({ recipe }: RecipeProp) => {
             className="rounded-3xl drop-shadow-xl p-5 hover:cursor-pointer"
             style={{ backgroundColor: "#ebf5e6" }}
         >
-            <div className="flex justify-center">
-                <img className="recipe__image" src={recipe.imageurl} alt={`Image of ${recipe.title}}`} />
+            <div className="flex justify-center mb-3">
+                <img className="recipe__image rounded-md" src={recipe.imageurl} alt={`Image of ${recipe.title}}`} />
             </div>
             <div className="text-center">
                 <div className="font-bold text-xl">{recipe.title}</div>
