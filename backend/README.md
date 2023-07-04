@@ -79,7 +79,7 @@ You can now use the app with specific URLs:
 | /api/ingredients/:id | /DELETE/;:id | Delete ingredient
 
 ***Request/Response Body***
-- /GET /api/ingredient
+- /GET /api/ingredients
 ```sh
 // Response
 {
@@ -88,7 +88,7 @@ You can now use the app with specific URLs:
 }
 ```
 
-- /GET /api/ingredient/:id
+- /GET /api/ingredients/:id
 ```sh
 // Response
 {
@@ -97,7 +97,7 @@ You can now use the app with specific URLs:
 }
 ```
 
-- /POST /api/ingredient
+- /POST /api/ingredients
 ```sh
 // Request
 {
@@ -117,6 +117,8 @@ You can now use the app with specific URLs:
 | /api/recipes| /GET | Get all recipes
 | /api/recipes/:id | /GET/:id | Get recipe by id
 | /api/recipes| /POST | Add recipe
+| /api/recipes/like/:id | /POST/like/:id | Like recipe
+| /api/recipes/unlike/:id | /POST/unlike/:id | Unlike recipe
 | /api/recipes/:id | /DELETE/;:id | Delete recipe
 
 - /GET /api/recipes
@@ -129,11 +131,13 @@ You can now use the app with specific URLs:
 			title:  string,
 			serving:  number,
 			imageurl:  string,
+			like: number,
 			created_at:  string | DateTime,
 			updated_at:  string | DateTime
 		}
 	],
-	pageData:  {
+	pageData:  
+	{
 		page:  number,
 		pageSize:  number,
 		totalItemsCount:  number,
@@ -144,15 +148,16 @@ You can now use the app with specific URLs:
 }
 ```
 
-- /GET /api/ingredient/:id
+- /GET /api/recipes/:id
 ```sh
 // Response
 {
 	id:  string,
 	title:  string,
-	serving":  number,
+	serving:  number,
 	instruction:  string,
 	imageurl:  string,
+	like: number,
 	created_at:  string | DateTime,
 	updated_at:  string | DateTime,
 	recipe_ingredient_link:  [
@@ -167,7 +172,7 @@ You can now use the app with specific URLs:
 }
 ```
 
-- /POST /api/ingredient
+- /POST /api/recipes
 ```sh
 // Request
 {
@@ -204,7 +209,36 @@ You can now use the app with specific URLs:
 | /api/tags| /GET | Get all tags
 | /api/tags/:id | /GET/:id | Get tag by id
 | /api/tags| /POST | Add tag
-| /api/tags/:id | /PATCH/:id | Update tag
 | /api/tags/:id | /DELETE/;:id | Delete tag
 
-***TBA (To be Added)***
+- /GET /api/tags
+```sh
+// Response
+{
+	id: string,
+	name: string
+}
+```
+
+- /GET /api/tags/:id
+```sh
+// Response
+{
+	id: string,
+	name: string
+}
+```
+
+- /POST /api/tags
+```sh
+// Request
+{
+	name: string
+}
+
+// Response
+{
+	status:  number,
+	message:  string
+}
+```
