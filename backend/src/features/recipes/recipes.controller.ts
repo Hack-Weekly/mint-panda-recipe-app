@@ -80,6 +80,34 @@ export const addRecipe = async (req: Request<{}, {}, AddRecipesDto>, res: Respon
         });
 }
 
+export const likeRecipeById = async (req: Request<{id: string}>, res: Response) => {
+    const id = req.params.id ;
+    const result = await recipesRepository.likeRecipeById(id);
+
+    if(!result)
+        res
+            .status(StatusCodes.NOT_FOUND)
+            .send({message : `Recipes with Id '${id}' was not found.`})
+
+    res
+        .status(StatusCodes.NO_CONTENT)
+        .send(ReasonPhrases.NO_CONTENT);
+}
+
+export const unlikeRecipeById = async (req: Request<{id: string}>, res: Response) => {
+    const id = req.params.id ;
+    const result = await recipesRepository.unlikeRecipeById(id);
+
+    if(!result)
+        res
+            .status(StatusCodes.NOT_FOUND)
+            .send({message : `Recipes with Id '${id}' was not found.`})
+
+    res
+        .status(StatusCodes.NO_CONTENT)
+        .send(ReasonPhrases.NO_CONTENT);
+}
+
 export const deleteRecipeById = async (req: Request<{id: string}>, res: Response) => {
     const id = req.params.id ;
     const result = await recipesRepository.deleteRecipeById(id);
