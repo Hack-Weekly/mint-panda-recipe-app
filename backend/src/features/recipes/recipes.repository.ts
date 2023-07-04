@@ -14,6 +14,7 @@ export const getRecipes = async (page: number = 1, pageSize: number = 10, search
             title: true,
             serving: true,
             imageurl: true,
+            like: true,
             created_at: true,
             updated_at: true
         },
