@@ -1,14 +1,23 @@
 import {
-    MinLength,
+    IsString,
+    MinLength, 
+    ValidateNested,
 } from 'class-validator';
-import { MissingId, MissingTag } from './validator-message';
+import { MissingId, MissingProp, NotString } from './validator-message';
+import { AddTagsDto } from '../features/tags/dtos/AddTagsDto';
 
-export class AddTag {
-    @MinLength(1, MissingTag)
-    name?: string
+export class AddTagValidator {
+    @ValidateNested({ each: true})
+    data!: AddTagProp
 }
 
-export class DeleteTag {
+export class AddTagProp implements AddTagsDto{
+    @IsString(NotString)
+    @MinLength(1, MissingProp)
+    name!:string
+}
+
+export class DeleteTagValidator {
     @MinLength(1, MissingId)
     id?: string
 }

@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import * as ingredientsRepository from './ingredients.repository'
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { validateOrReject } from "class-validator";
-import { AddIngredients, DeleteIngredients, UpdateIngredients } from "../../validator/ingredients.validator";
+import { AddIngredientValidator, AddIngredientProp, DeleteIngredientValidator, UpdateIngredientValidator, UpdateIngredientProp } from "../../validator/ingredients.validator";
+import { plainToInstance } from "class-transformer";
 
 export const getIngredients = async (req: Request, res: Response) => {
     const results = await ingredientsRepository.getIngredients();
@@ -31,8 +32,8 @@ export const getIngredientById = async (req: Request, res: Response) => {
 export const addIngredients = async (req: Request, res: Response) => {
     const data = req.body;
 
-    let addIngredients = new AddIngredients();
-    addIngredients.name = data.name;
+    let addIngredients = new AddIngredientValidator();
+    addIngredients.data = plainToInstance(AddIngredientProp, data)
 
     try {
         await validateOrReject(addIngredients)
@@ -56,12 +57,12 @@ export const updateIngredients = async (req: Request, res: Response) => {
     const id = req.params.id ;
     const data = req.body;
 
-    let updateIngredients = new UpdateIngredients();
-    updateIngredients.id = id;
-    updateIngredients.name = data.name;
+    let updateIngredient = new UpdateIngredientValidator();
+    updateIngredient.id = id;
+    updateIngredient.data = plainToInstance(UpdateIngredientProp, data);
 
     try {
-        await validateOrReject(addIngredients)
+        await validateOrReject(updateIngredient)
     } catch (e) {
         return res
             .status(StatusCodes.BAD_REQUEST)
@@ -84,7 +85,7 @@ export const updateIngredients = async (req: Request, res: Response) => {
 export const deleteIngredients = async (req: Request, res: Response) => {
     const id = req.params.id ;
 
-    let deleteIngredients = new DeleteIngredients();
+    let deleteIngredients = new DeleteIngredientValidator();
     deleteIngredients.id = id;
 
     try {
