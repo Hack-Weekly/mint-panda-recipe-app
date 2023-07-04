@@ -1,6 +1,6 @@
-import { useLoaderData } from "react-router-dom"
+import { useActionData, useLoaderData } from "react-router-dom"
 import RecipeForm from "../../components/recipe/RecipeForm"
-import { Ingredient, Tag } from "../../interfaces"
+import { ErrorMessage, Ingredient, Tag } from "../../interfaces"
 
 export interface AllIngredientsTags {
   ingredients: Ingredient[],
@@ -9,10 +9,11 @@ export interface AllIngredientsTags {
 
 const NewRecipe = () => {
   const ingredientsTagsData = useLoaderData() as AllIngredientsTags
-  
+  const errorMessage = useActionData() as ErrorMessage
+
   return (
     <>
-      <RecipeForm ingredientsData={ingredientsTagsData.ingredients} tagsData={ingredientsTagsData.tags} />
+      <RecipeForm ingredientsData={ingredientsTagsData.ingredients} tagsData={ingredientsTagsData.tags} errorMessage={errorMessage} />
     </>
   )
 }

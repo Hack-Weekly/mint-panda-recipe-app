@@ -15,7 +15,7 @@ const DashboardComponent = ({ recipesData }: RecipeDataProp) => {
             </h2>
             <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-16">
                 {
-                    recipesData.results.map(recipe => (
+                    recipesData?.results.map(recipe => (
                         <div key={recipe.id}>
                             <Link to={`recipe/${recipe.id}`}>
                                 <RecipeComponent recipe={recipe} />

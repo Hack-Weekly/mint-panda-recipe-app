@@ -22,7 +22,7 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
           <h2 className="text-xl text-left font-bold mb-2">Tags</h2>
 
           <div className="flex justify-start space-x-2 flex-wrap">
-            {recipeData.recipe_tag_link.map((tag, index) => (
+            {recipeData?.recipe_tag_link.map((tag, index) => (
               <div className="bg-gray-700 rounded px-2 mt-1" key={`${tag.id}-${index}`}>
                 <p className="text-white font-semibold">#{tag.name}</p>
               </div>
@@ -36,7 +36,7 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
 
           <div className="pl-5">
             <ul className="list-disc">
-              {recipeData.recipe_ingredient_link.map((ingredient, index) => (
+              {recipeData?.recipe_ingredient_link.map((ingredient, index) => (
                 <li className="mb-1" key={`${ingredient.id}-${index}`}>
                   {ingredient.amount} {ingredient.name}
                 </li>
@@ -60,7 +60,7 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
           {/* What the code does:
           1. Split string into an array separated by newline
           2. Strip off any user created lists */}
-          {recipeData.instruction.split(/\r?\n/).map((line: string, index: number) => (
+          {recipeData?.instruction.split(/\r?\n/).map((line: string, index: number) => (
             <li className="mb-2" key={index}>
               {line.replace(/^\s*\d+\.\s*/g, "")}
             </li>

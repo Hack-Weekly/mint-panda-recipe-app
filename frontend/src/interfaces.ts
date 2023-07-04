@@ -68,4 +68,11 @@ export interface Tag {
   name: string
 }
 
-
+export interface ErrorMessage {
+  title?: string,
+  imageUrl?: string,
+  serving?: string,
+  instruction?: string,
+  tags?: string,
+  ingredients?: string
+}
