@@ -2,7 +2,7 @@ import axios from "axios"
 import { dummyRecipe, dummyRecipeList, dummyIngredientList, dummyTags } from "./dummy"
 import { RecipePost } from "../interfaces"
 
-const API_ROOT = "https://mint-panda-recipe-api.onrender.com"
+const API_ROOT = import.meta.env.VITE_API_ROOT
 
 export const getRecipes = async (page = 1) => {
   return axios.get(`${API_ROOT}/api/recipes?page=${page}&orderBy=created_at&orderByPrecedence=desc`, {
