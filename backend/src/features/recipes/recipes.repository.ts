@@ -4,9 +4,11 @@ import { UpdateIngredientsDto } from "../ingredients/dtos/UpdateIngredients.dto"
 import { RecipeListDto } from "./dtos/RecipeList.dto";
 import { AddRecipesDto } from "./dtos/AddIngredients.dto";
 import { randomUUID } from "crypto";
+import { IFilterByDate } from "../../types/IFilterByDate";
+
 const client = new PrismaClient();
 
-export const getRecipes = async (page: number = 1, pageSize: number = 10, search?: string): Promise<[RecipeListDto[], number]> => {
+export const getRecipes = async (page: number = 1, pageSize: number = 10, search?: string, orderBy?: Record<string, string>, filterByDate?: IFilterByDate): Promise<[RecipeListDto[], number]> => {
 
     const results = await client.recipe.findMany({
         select: {
@@ -14,14 +16,17 @@ export const getRecipes = async (page: number = 1, pageSize: number = 10, search
             title: true,
             serving: true,
             imageurl: true,
+            like: true,
             created_at: true,
             updated_at: true
         },
         where: {
             title: {
                 search
-            }
+            },
+            updated_at: filterByDate
         },
+        orderBy: orderBy,
         skip: Number(pageSize * (page - 1)),
         take: Number(pageSize)
     });
@@ -105,6 +110,46 @@ export const addRecipe = async (newRecipe: AddRecipesDto) => {
     })
 
     return result;
+}
+
+export const likeRecipeById = async (id: string) => {
+    const recipe = await getRecipesById(id);
+
+    if (!recipe)
+        return null;
+
+        const result = await client.recipe.update(
+            {
+                where: {
+                    id
+                },
+                data: {
+                    like: recipe.like + 1
+                }
+            }
+        )
+
+    return result.id;
+}
+
+export const unlikeRecipeById = async (id: string) => {
+    const recipe = await getRecipesById(id);
+
+    if (!recipe)
+        return null;
+
+    const result = await client.recipe.update(
+        {
+            where: {
+                id
+            },
+            data: {
+                like: recipe.like - 1
+            }
+        }
+    )
+
+    return result.id;
 }
 
 export const deleteRecipeById = async (id: string) => {
