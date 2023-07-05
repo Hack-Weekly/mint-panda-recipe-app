@@ -89,7 +89,7 @@ CLIENT_URL=http://localhost:5137
 
   
 
-### For Initializing/Starting the application and the docker apps, kindly enter these commands below:
+## For Initializing/Starting the application and the docker apps, kindly enter these commands below:
 
   
 
@@ -119,17 +119,11 @@ You can now use the app with specific URLs:
 **Ingredients**
 
 | api| methods | description
-
-|  --------  |  -------  |  -------  |
-
+|  --------  |  -------  |  -------  |
 | /api/ingredients| /GET | Get all ingredients
-
 | /api/ingredients/:id | /GET/:id | Get ingredient by id
-
 | /api/ingredients | /POST | Add ingredient
-
 | /api/ingredients/:id | /PATCH/:id | Update ingredient
-
 | /api/ingredients/:id | /DELETE/;:id | Delete ingredient
 
   
@@ -138,7 +132,7 @@ You can now use the app with specific URLs:
 
 - /GET /api/ingredients
 
-```JSON
+```
 // Response
 {
     id: string,
@@ -151,7 +145,7 @@ You can now use the app with specific URLs:
 
 - /GET /api/ingredients/:id
 
-```JSON
+```
 // Response
 {
     id: string,
@@ -163,7 +157,7 @@ You can now use the app with specific URLs:
 
 - /POST /api/ingredients
 
-```JSON
+```
 // Request
 {
     name: string
@@ -182,26 +176,17 @@ You can now use the app with specific URLs:
 **Recipe**
 
 | api| methods | description
-
-|  --------  |  -------  |  -------  |
-
+|  --------  |  -------  |  -------  |
 | /api/recipes| /GET | Get all recipes
-
 | /api/recipes/:id | /GET/:id | Get recipe by id
-
 | /api/recipes| /POST | Add recipe
-
-| /api/recipes/like/:id | /POST/like/:id | Like recipe
-
-| /api/recipes/unlike/:id | /POST/unlike/:id | Unlike recipe
-
 | /api/recipes/:id | /DELETE/;:id | Delete recipe
 
   
 
 - /GET /api/recipes
 
-```JSON
+```
 // Response
 {
     results: [
@@ -232,7 +217,7 @@ You can now use the app with specific URLs:
 
 - /GET /api/recipes/:id
 
-```JSON
+```
 // Response
 {
     id:  string,
@@ -260,17 +245,17 @@ You can now use the app with specific URLs:
 
 - /POST /api/recipes
 
-```JSON
+```
 // Request
 {
 	{
-		title:  string,
+	title:  string,
         imageUrl:  string,
         serving:  number,
         instruction:  strng,
         tags:  [
-		    {
-			  id:  string
+		{
+	            id:  string
 	        }
 		],
         ingredients:  [
@@ -295,22 +280,18 @@ You can now use the app with specific URLs:
 **Tags**
 
 | api| methods | description
-
-|  --------  |  -------  |  -------  |
-
+|  --------  |  -------  |  -------  |
 | /api/tags| /GET | Get all tags
-
 | /api/tags/:id | /GET/:id | Get tag by id
-
 | /api/tags| /POST | Add tag
-
+| /api/tags/:id | /PATCH/:id | Update tag
 | /api/tags/:id | /DELETE/;:id | Delete tag
 
   
 
 - /GET /api/tags
 
-```JSON
+```
 // Response
 {
     id: string,
@@ -322,7 +303,7 @@ You can now use the app with specific URLs:
 
 - /GET /api/tags/:id
 
-```JSON
+```
 // Response
 {
     id: string,
@@ -334,7 +315,7 @@ You can now use the app with specific URLs:
 
 - /POST /api/tags
 
-```JSON
+```
 
 // Request
 {
