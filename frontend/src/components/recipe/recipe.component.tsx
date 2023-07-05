@@ -32,7 +32,7 @@ const RecipeComponent = ({ recipe }: RecipeProp) => {
             <div className="mt-10 flex justify-between">
                 <div className="flex gap-1 items-center">
                     <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-                    <span>0</span>
+                    <span>{recipe.like}</span>
                 </div>
                 <div className="flex gap-1 items-center">
                     <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>

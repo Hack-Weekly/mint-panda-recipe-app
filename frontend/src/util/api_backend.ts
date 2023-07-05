@@ -58,3 +58,15 @@ export const getTags = async () => {
       return dummyTags
     })
 }
+
+export const like = async (id: string) => {
+  return axios.post(`${API_ROOT}/api/recipes/like/${id}`, {
+    withCredentials: true
+  })
+}
+
+export const unlike = async (id: string) => {
+  return axios.post(`${API_ROOT}/api/recipes/unlike/${id}`, {
+    withCredentials: true
+  })
+}

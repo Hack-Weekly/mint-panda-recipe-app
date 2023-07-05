@@ -6,6 +6,7 @@ export interface FullRecipe {
   imageurl: string;
   created_at: string | Date;
   updated_at: string | Date;
+  like: number,
   recipe_ingredient_link: FullRecipeIngredientLink[];
   recipe_tag_link: FullRecipeTagLink[];
 }
@@ -31,6 +32,7 @@ export interface Recipe {
   title: string;
   serving: number;
   imageurl: string;
+  like: number;
   created_at: string | Date;
   updated_at: string | Date;
 }
