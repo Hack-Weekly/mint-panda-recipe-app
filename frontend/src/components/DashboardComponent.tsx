@@ -6,7 +6,7 @@ import { Recipe } from "../interfaces"
 interface RecipeDataProp {
     recipeResultsData: Recipe[],
     likedIdData: { [key: string]: boolean }
-    handleLikeUnlike: (arg: string) => void
+    handleLikeUnlike: (arg?: string) => void
 }
 
 const DashboardComponent = ({ recipeResultsData, likedIdData, handleLikeUnlike }: RecipeDataProp) => {
