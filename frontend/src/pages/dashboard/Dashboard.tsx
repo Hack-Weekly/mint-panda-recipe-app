@@ -30,7 +30,10 @@ const Dashboard = () => {
     setLikedIdData(JSON.parse(localStorage.getItem("recipe_likes") || "{}"))
   }, [currentRecipesData])
 
-  const handleLikeUnlike = async (id: string) => {
+  const handleLikeUnlike = async (id?: string) => {
+
+    if(!id) return console.log("id is undefined");
+
     const handleLike = (liked: boolean) => {
       const updatedRecipeResults = currentRecipesData.results.map((recipe) => {
         if (recipe.id === id) {
