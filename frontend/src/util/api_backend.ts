@@ -4,8 +4,8 @@ import { RecipePost } from "../interfaces"
 
 const API_ROOT = "http://localhost:5000"
 
-export const getRecipes = async () => {
-  return axios.get(`${API_ROOT}/api/recipes`, {
+export const getRecipes = async (page = 1) => {
+  return axios.get(`${API_ROOT}/api/recipes?page=${page}&orderBy=created_at&orderByPrecedence=desc`, {
     withCredentials: true
   })
     .then(response => response.data)
