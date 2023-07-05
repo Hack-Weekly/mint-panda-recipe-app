@@ -4,10 +4,12 @@ import { Link } from "react-router-dom"
 import { Recipe } from "../interfaces"
 
 interface RecipeDataProp {
-    recipeResultsData: Recipe[]
+    recipeResultsData: Recipe[],
+    likedIdData: { [key: string]: boolean }
+    handleLikeUnlike: (arg: string) => void
 }
 
-const DashboardComponent = ({ recipeResultsData }: RecipeDataProp) => {
+const DashboardComponent = ({ recipeResultsData, likedIdData, handleLikeUnlike }: RecipeDataProp) => {
     return (
         <div className="main padding-5">
             <h2 className="h4 border-b-4 border-b-black">
@@ -15,10 +17,10 @@ const DashboardComponent = ({ recipeResultsData }: RecipeDataProp) => {
             </h2>
             <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-16">
                 {
-                    recipeResultsData.map(recipe => (
-                        <div key={recipe.id}>
+                    recipeResultsData.map((recipe, index) => (
+                        <div key={recipe.id + index}>
                             <Link to={`recipe/${recipe.id}`}>
-                                <RecipeComponent recipe={recipe} />
+                                <RecipeComponent recipe={recipe} liked={likedIdData[recipe.id]} handleLikeUnlike={handleLikeUnlike} />
                             </Link>
                         </div>
                     ))
