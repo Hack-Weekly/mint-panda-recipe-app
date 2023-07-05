@@ -7,9 +7,9 @@ import {
 import { Recipe } from "../../interfaces";
 
 interface RecipeProp {
-    recipe: Recipe,
-    liked: boolean,
-    handleLikeUnlike: (arg: string) => void
+    recipe?: Recipe,
+    liked?: boolean,
+    handleLikeUnlike?: (arg?: string) => void
 }
 
 const RecipeComponent = ({ recipe, liked, handleLikeUnlike }: RecipeProp) => {
@@ -19,21 +19,22 @@ const RecipeComponent = ({ recipe, liked, handleLikeUnlike }: RecipeProp) => {
             style={{ backgroundColor: "#ebf5e6" }}
         >
             <div className="flex justify-center mb-3">
-                <img className="recipe__image rounded-md" src={recipe.imageurl} alt={`Image of ${recipe.title}}`} />
+                <img className="recipe__image rounded-md" src={recipe?.imageurl} alt={`Image of ${recipe?.title}}`} />
             </div>
             <div className="text-center">
-                <div className="font-bold text-xl">{recipe.title}</div>
+                <div className="font-bold text-xl">{recipe?.title}</div>
             </div>
             <div className="flex gap-1">
                 <div>
                     <FontAwesomeIcon icon={faPlateWheat}></FontAwesomeIcon>
                 </div>
-                <div className="text-xs">{recipe.serving} servings</div>
+                <div className="text-xs">{recipe?.serving} servings</div>
             </div>
             <div className="mt-10 flex justify-between">
                 <button className="flex gap-1 items-center" onClick={(event) => {
                     event.preventDefault() // Prevent the link from sending user to single recipe page
-                    handleLikeUnlike(recipe.id)
+                    if(!handleLikeUnlike) return;
+                    handleLikeUnlike(recipe?.id)
                 }}>
                     {
                         liked ?
@@ -44,7 +45,7 @@ const RecipeComponent = ({ recipe, liked, handleLikeUnlike }: RecipeProp) => {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                             </svg>
                     }
-                    <span>{recipe.like}</span>
+                    <span>{recipe?.like}</span>
                 </button>
                 <div className="flex gap-1 items-center">
                     <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
