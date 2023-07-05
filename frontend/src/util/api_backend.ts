@@ -4,8 +4,8 @@ import { RecipePost } from "../interfaces"
 
 const API_ROOT = "http://localhost:5000"
 
-export const getRecipes = async () => {
-  return axios.get(`${API_ROOT}/api/recipes`, {
+export const getRecipes = async (page = 1) => {
+  return axios.get(`${API_ROOT}/api/recipes?page=${page}&orderBy=created_at&orderByPrecedence=desc`, {
     withCredentials: true
   })
     .then(response => response.data)
@@ -57,4 +57,16 @@ export const getTags = async () => {
       console.log(error)
       return dummyTags
     })
+}
+
+export const like = async (id: string) => {
+  return axios.post(`${API_ROOT}/api/recipes/like/${id}`, {
+    withCredentials: true
+  })
+}
+
+export const unlike = async (id: string) => {
+  return axios.post(`${API_ROOT}/api/recipes/unlike/${id}`, {
+    withCredentials: true
+  })
 }

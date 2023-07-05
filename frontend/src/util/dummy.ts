@@ -6,6 +6,7 @@ const dummyRecipe: FullRecipe = {
   "serving": 4,
   "instruction": "1. Cook the pasta\n2. Prepare the sauce\n3. Mix pasta and sauce\n4. Serve hot",
   "imageurl": "https://example.com/delicious-pasta.jpg",
+  "like": 0,
   "created_at": "2023-06-01T10:00:00Z",
   "updated_at": "2023-06-15T15:30:00Z",
   "recipe_ingredient_link": [
@@ -43,6 +44,7 @@ const dummyRecipeList: RecipeList = {
       "id": "1",
       "title": "Recipe 1",
       "serving": 4,
+      "like": 0,
       "imageurl": "https://example.com/recipe1.jpg",
       "created_at": "2023-06-01T10:00:00Z",
       "updated_at": "2023-06-15T15:30:00Z"
@@ -51,6 +53,7 @@ const dummyRecipeList: RecipeList = {
       "id": "2",
       "title": "Recipe 2",
       "serving": 2,
+      "like": 0,
       "imageurl": "https://example.com/recipe2.jpg",
       "created_at": "2023-06-05T14:30:00Z",
       "updated_at": "2023-06-20T09:45:00Z"
