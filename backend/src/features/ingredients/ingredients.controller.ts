@@ -18,7 +18,7 @@ export const getIngredientById = async (req: Request, res: Response) => {
     const result = await ingredientsRepository.getIngredientById(id);
 
     if(!result)
-        res
+        return res
             .status(StatusCodes.NOT_FOUND)
             .send({message : `Ingredients with Id '${id}' was not found.`})
 
@@ -72,7 +72,7 @@ export const updateIngredients = async (req: Request, res: Response) => {
     const result = await ingredientsRepository.updateIngredientById(id, data);
 
     if(!result)
-        res
+        return res
             .status(StatusCodes.NOT_FOUND)
             .send({message : `Ingredients with Id '${id}' was not found.`})
 
@@ -99,7 +99,7 @@ export const deleteIngredients = async (req: Request, res: Response) => {
     const result = await ingredientsRepository.deleteIngredientById(id);
 
     if(!result)
-        res
+        return res
             .status(StatusCodes.NOT_FOUND)
             .send({message : `Ingredients with Id '${id}' was not found.`})
 
