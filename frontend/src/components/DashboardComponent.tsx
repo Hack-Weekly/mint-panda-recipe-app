@@ -1,13 +1,13 @@
 import "./dashboard/dashboard.component.scss"
 import RecipeComponent from "./recipe/recipe.component"
 import { Link } from "react-router-dom"
-import { RecipeList } from "../interfaces"
+import { Recipe } from "../interfaces"
 
 interface RecipeDataProp {
-    recipesData: RecipeList
+    recipeResultsData: Recipe[]
 }
 
-const DashboardComponent = ({ recipesData }: RecipeDataProp) => {
+const DashboardComponent = ({ recipeResultsData }: RecipeDataProp) => {
     return (
         <div className="main padding-5">
             <h2 className="h4 border-b-4 border-b-black">
@@ -15,7 +15,7 @@ const DashboardComponent = ({ recipesData }: RecipeDataProp) => {
             </h2>
             <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-16">
                 {
-                    recipesData?.results.map(recipe => (
+                    recipeResultsData.map(recipe => (
                         <div key={recipe.id}>
                             <Link to={`recipe/${recipe.id}`}>
                                 <RecipeComponent recipe={recipe} />
