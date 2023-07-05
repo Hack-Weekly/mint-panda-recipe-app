@@ -1,0 +1,140 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas: "header header"
+    "sidebar main";
+  grid-template-columns: 1fr 5fr;
+  grid-template-rows: 1fr 5fr;
+  height: 100vh;
+
+  background-color: #535bf2;
+}
+
+.header {
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #41482e;
+}
+
+@for $i from 1 through 6 {
+  .h#{$i} {
+    font-size: calc(7rem - #{$i}rem);
+  }
+
+  .fs-#{$i} {
+    font-size: #{$i}rem;
+  }
+
+  .padding-#{$i} {
+    padding: #{$i}rem;
+  }
+
+  .padding-x-#{$i} {
+    padding-inline: #{$i}rem;
+  }
+
+  .padding-y-#{$i} {
+    padding-block: #{$i}rem;
+  }
+
+  .padding-top-#{$i} {
+    padding-top: #{$i}rem;
+  }
+
+  .padding-bottom-#{$i} {
+    padding-bottom: #{$i}rem;
+  }
+
+  .margin-#{$i} {
+    margin: #{$i}rem;
+  }
+
+  .margin-x-#{$i} {
+    margin-inline: #{$i}rem;
+  }
+
+  .margin-y-#{$i} {
+    margin-block: #{$i}rem;
+  }
+
+  .margin-top-#{$i} {
+    margin-top: #{$i}rem;
+  }
+
+  .margin-bottom-#{$i} {
+    margin-bottom: #{$i}rem;
+  }
+}
+
+
+.text-white {
+  color: #fff;
+}
+
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: #7f7f7f;
+}
+
+.main {
+  grid-area: main;
+  background-color: #ffffff;
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.border-top {
+  border-top: 1px solid black;
+}
+
+.border-bottom {
+  border-bottom: 1px solid black;
+}
+
+.border-left {
+  border-left: 1px solid black;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+
+.border-weight-thick {
+  border-width: 5px;
+}
+
+.border-weight-thin {
+  border-width: 1px;
+}
+
+.border-weight-medium {
+  border-width: 3px;
+}
+
+.recipes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.recipes-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
