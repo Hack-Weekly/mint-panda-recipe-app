@@ -76,12 +76,12 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
         <div className="mb-2">
           <label className="block mb-1 font-bold">Recipe Title</label>
           {errorMessage?.title && <p className="text-sm text-red-500">{errorMessage?.title}</p>}
-          <input className="w-full px-2 input-field" type="text" id="recipeTitle" name="title" />
+          <input className="w-full px-2 input-field" type="text" id="recipeTitle" name="title" placeholder="E.g. My recipe!" />
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">Recipe Image URL</label>
           {errorMessage?.imageUrl && <p className="text-sm text-red-500">{errorMessage?.imageUrl}</p>}
-          <input className="w-full px-2 input-field" type="text" id="recipeImage" name="imageurl" />
+          <input className="w-full px-2 input-field" type="text" id="recipeImage" name="imageurl" placeholder="E.g. https://example.com/recipe.jpg" />
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">Recipe Tags</label>
@@ -97,7 +97,7 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
         <div className="mb-2">
           <label className="block mb-1 font-bold">Servings per Recipe</label>
           {errorMessage?.serving && <p className="text-sm text-red-500">{errorMessage?.serving}</p>}
-          <input className="w-full px-2 input-field" type="number" id="serving" placeholder="E.g. 4 servings" name="serving" />
+          <input className="w-full px-2 input-field" type="number" id="serving" placeholder="E.g. 4" name="serving" />
         </div>
         <div className="mb-2">
           <label className="block mb-1 font-bold">
@@ -127,7 +127,7 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
                   <CreatableSelect
                     isClearable
                     options={ingredients}
-                    placeholder="Ingredients"
+                    placeholder="Ingredient"
                     name="ingredients"
                     onChange={option => handleIngredientsInputChange(index, {
                       name: "ingredients",
@@ -150,7 +150,7 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
         <div className="mb-8">
           <label className="block mb-1 font-bold">Recipe Instructions</label>
           {errorMessage?.instruction && <p className="text-sm text-red-500">{errorMessage?.instruction}</p>}
-          <textarea className="h-2/3 p-2 w-full input-box" id="recipeInstruction" rows={4} name="instruction"></textarea>
+          <textarea className="h-2/3 p-2 w-full input-box" id="recipeInstruction" rows={4} name="instruction" placeholder="E.g. First, place the egg..."></textarea>
         </div>
         <div className="flex justify-center">
           <button className="bg-[#BCDC79] hover:bg-[#A9C66C] text-black text-2xl font-bold py-3 px-10 rounded focus:outline-none focus:shadow-outline" type="submit">
