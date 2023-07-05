@@ -1,0 +1,30 @@
+.input-field {
+  border: 1px solid #CCCCCC !important;
+  border-radius: 5px;
+  transition: border-color 0.1s;
+  outline: none !important;
+  height: 38px
+}
+
+.input-field:hover {
+  border-color: #B3B3B3 !important;
+}
+
+.input-field:focus {
+  box-shadow: 0 0 1px 1px #0066CC;
+}
+
+.input-box {
+  border: 1px solid #CCCCCC !important;
+  border-radius: 5px;
+  transition: border-color 0.1s;
+  outline: none !important;
+}
+
+.input-box:hover {
+  border-color: #B3B3B3 !important;
+}
+
+.input-box:focus {
+  box-shadow: 0 0 1px 1px #0066CC;
+}
