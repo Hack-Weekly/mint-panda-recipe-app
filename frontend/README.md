@@ -6,18 +6,8 @@
 
 # Installation
 
-## Development:
-
-- **Create an `.env.development` file inside `/frontend` with the contents:**
+- **Change file contents in `config.ts` in `/frontend/src/util` according to dev/prod api root:**
 ```
-VITE_API_ROOT=http://localhost:5000
+export const API_ROOT_DEV = "http://localhost:5000"
+export const API_ROOT_PROD = "https://example.com"
 ```
-where `http://localhost:5000` is your development api url
-
-## Production:
-
-- **Create an `.env.production` file inside `/frontend` with the contents:**
-```
-VITE_API_ROOT=https://example.com/api/recipes
-```
-where `https://example.com/api/recipes` is your production api url
