@@ -1,8 +1,9 @@
 import axios from "axios"
 import { dummyRecipe, dummyRecipeList, dummyIngredientList, dummyTags } from "./dummy"
 import { RecipePost } from "../interfaces"
+import { API_ROOT_DEV, API_ROOT_PROD } from "./config"
 
-const API_ROOT = "http://localhost:5000"
+const API_ROOT = import.meta.env.DEV ? API_ROOT_DEV : API_ROOT_PROD
 
 export const getRecipes = async (page = 1) => {
   return axios.get(`${API_ROOT}/api/recipes?page=${page}&orderBy=created_at&orderByPrecedence=desc`, {
@@ -30,11 +31,6 @@ export const saveRecipe = async (recipe: RecipePost) => {
     withCredentials: true
   }).then(response => response.data)
   // error handled by react router
-}
-
-export const updateRecipe = async () => {
-  // TODO: UPDATE LIKES
-  return null
 }
 
 export const getIngredients = async () => {
