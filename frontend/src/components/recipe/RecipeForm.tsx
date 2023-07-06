@@ -1,4 +1,4 @@
-import { Form } from "react-router-dom"
+import { Form, Link } from "react-router-dom"
 import { ErrorMessage, Ingredient, Tag } from "../../interfaces"
 import { useEffect, useState } from "react"
 import CreatableSelect from "react-select/creatable"
@@ -67,9 +67,23 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
   }
 
   return (
-    <div className="mx-auto my-2.5 w-9/12">
+    <div className="mx-auto mt-8 mb-20 w-9/12">
+      <div className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/12 mb-2">
+        <Link to={"/"} className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/12">
+          <button className="flex flex-row text-l">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6 mx-1">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+              </svg>
+            </div>
+            <div>
+              Go Back
+            </div>
+          </button>
+        </Link>
+      </div>
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-2">Submit a Recipe!</h2>
+        <h1 className="text-3xl font-bold mb-2">Submit a Recipe!</h1>
       </div>
       <hr className="mb-2" />
       <Form method="post" action="/recipe/new">
