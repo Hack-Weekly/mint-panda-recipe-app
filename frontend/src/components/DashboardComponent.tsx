@@ -17,7 +17,7 @@ const DashboardComponent = ({ recipeResultsData, likedIdData, handleLikeUnlike }
                     Today's Feature
                 </h2>
             </div>
-            <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-14">
+            <div className="flex flex-wrap gap-x-6 p-12 justify-around gap-y-6">
                 {
                     recipeResultsData.map((recipe, index) => (
                         <div key={recipe.id + index}>
