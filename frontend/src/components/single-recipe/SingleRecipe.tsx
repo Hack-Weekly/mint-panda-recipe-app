@@ -7,7 +7,7 @@ interface recipeDataProp {
 
 export default function SingleRecipe({ recipeData }: recipeDataProp) {
   return (
-    <div className="mx-auto my-2.5 w-9/12">
+    <div className="mx-auto mt-8 mb-20 w-9/12">
       <div className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/12">
         <Link to={"/"} className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/12">
           <button className="flex flex-row text-l">
@@ -24,7 +24,7 @@ export default function SingleRecipe({ recipeData }: recipeDataProp) {
       </div>
       <div className="flex flex-col md:flex-row">
         <div className="md:w-full md:order-last lg:w-1/2 xl:w-1/2 2xl:w-1/3">
-          <img className="rounded-3xl p-2 h-auto" src={recipeData.imageurl} alt={`Image of ${recipeData.title}`}></img>
+          <img className="rounded-3xl p-2 h-auto max-h-[36rem]" src={recipeData.imageurl} alt={`Image of ${recipeData.title}`}></img>
         </div>
         <div className="text-left lg:w-2/3 md:w-full pr-5 pb-4">
           <h1 className="text-3xl font-bold mt-4 mb-2">{recipeData.title}</h1>

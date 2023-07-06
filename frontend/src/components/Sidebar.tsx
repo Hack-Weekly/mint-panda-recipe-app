@@ -91,6 +91,10 @@ function Sidebar() {
           )}
         </div>
       </div>
+      {showSidebar ?
+        <div style={{ zIndex: 9 }} className='fixed top-0 min-h-screen min-w-full' onClick={() => setShowSidebar(!showSidebar)}></div> :
+        ""
+      }
     </>
   );
 }
