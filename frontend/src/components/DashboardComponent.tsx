@@ -11,11 +11,13 @@ interface RecipeDataProp {
 
 const DashboardComponent = ({ recipeResultsData, likedIdData, handleLikeUnlike }: RecipeDataProp) => {
     return (
-        <div className="main padding-5">
-            <h2 className="h4 border-b-4 border-b-black text-center">
-                Today's Feature
-            </h2>
-            <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-16">
+        <div className="main padding-3">
+            <div className="flex justify-center">
+                <h2 className="h4 border-b-4 border-b-black text-center w-5/6">
+                    Today's Feature
+                </h2>
+            </div>
+            <div className="flex flex-wrap gap-x-16 p-12 justify-around gap-y-14">
                 {
                     recipeResultsData.map((recipe, index) => (
                         <div key={recipe.id + index}>

@@ -35,7 +35,8 @@
   }
 
   .padding-#{$i} {
-    padding: #{$i}rem;
+    padding: #{$i - 4}rem;
+    padding-top: #{$i}rem;
   }
 
   .padding-x-#{$i} {

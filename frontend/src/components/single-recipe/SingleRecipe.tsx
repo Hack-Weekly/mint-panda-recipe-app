@@ -7,7 +7,7 @@ interface recipeDataProp {
 
 export default function SingleRecipe({ recipeData }: recipeDataProp) {
   return (
-    <div className="mx-auto my-2.5 w-9/12">
+    <div className="mx-auto mt-8 mb-20 w-9/12">
       <div className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/12">
         <Link to={"/"} className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/12">
           <button className="flex flex-row text-l">
