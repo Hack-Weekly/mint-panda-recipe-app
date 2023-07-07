@@ -27,7 +27,7 @@ interface InputEvent {
   value: string | IngredientOption | null
 }
 
-const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList & TagList & { errorMessage: ErrorMessage }) => {
+const RecipeForm = ({ ingredientsData, tagsData, errorMessage, submitting }: IngredientList & TagList & { errorMessage: ErrorMessage } & { submitting: boolean }) => {
   const [ingredients, setIngredients] = useState<readonly IngredientOption[]>([])
   const [tags, setTags] = useState<readonly IngredientOption[]>([])
   const [ingredientsInput, setIngredientsInput] = useState<IngredientInput[]>([{ amount: "", ingredients: { value: "", label: "" } }])
@@ -167,8 +167,8 @@ const RecipeForm = ({ ingredientsData, tagsData, errorMessage }: IngredientList 
           <textarea className="h-2/3 p-2 w-full input-box" id="recipeInstruction" rows={4} name="instruction" placeholder="E.g. First, place the egg..."></textarea>
         </div>
         <div className="flex justify-center">
-          <button className="bg-[#BCDC79] hover:bg-[#A9C66C] text-black text-2xl font-bold py-3 px-10 rounded focus:outline-none focus:shadow-outline" type="submit">
-            Submit!
+          <button disabled={submitting} className="disabled:opacity-75 disabled:text-slate-500 disabled:border-slate-200 bg-[#BCDC79] enabled:hover:bg-[#A9C66C] text-black text-2xl font-bold py-3 px-10 rounded focus:outline-none focus:shadow-outline" type="submit">
+            {submitting ? "Processing..." : "Submit!"}
           </button>
         </div>
         {errorMessage?.id && <p className="text-sm text-red-500 mt-2">Creating your own Tag or Ingredient is not supported yet</p>}
