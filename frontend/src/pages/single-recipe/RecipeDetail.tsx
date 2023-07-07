@@ -1,11 +1,12 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, Await } from 'react-router-dom';
 import SingleRecipe from '../../components/single-recipe/SingleRecipe';
 import { FullRecipe } from '../../interfaces';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
+import Loading from '../../components/Loading';
 
 function RecipeDetail() {
-  const recipeData = useLoaderData() as FullRecipe;
-  
+  const recipeData = useLoaderData() as { recipe: FullRecipe };
+
   // scroll top of page
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -13,7 +14,13 @@ function RecipeDetail() {
 
   return (
     <>
-      <SingleRecipe recipeData={recipeData} />
+      <Suspense fallback={<Loading />}>
+        <Await
+          resolve={recipeData.recipe}
+        >
+          {(resolvedRecipe) => <SingleRecipe recipeData={resolvedRecipe} />}
+        </Await>
+      </Suspense >
     </>
   );
 }
