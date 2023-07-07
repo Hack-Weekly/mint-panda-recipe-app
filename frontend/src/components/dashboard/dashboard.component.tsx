@@ -1,6 +1,6 @@
 import "./dashboard.component.scss"
 import RecipeComponent from "../recipe/recipe.component.tsx";
-import SidebarComponent from "../sidebar/sidebar.component.tsx";
+// import SidebarComponent from "../sidebar/sidebar.component.tsx";
 
 const DashboardComponent = () => {
     return (
@@ -8,9 +8,9 @@ const DashboardComponent = () => {
             <h1 className="header text-white py-10 text-5xl font-bold ">
                 Mint panda
             </h1>
-            <div className="sidebar">
+            {/* <div className="sidebar">
                 <SidebarComponent></SidebarComponent>
-            </div>
+            </div> */}
             <div className="main padding-5 ">
                 <h2 className="h4 border-b-4 border-b-black">
                     today's feature

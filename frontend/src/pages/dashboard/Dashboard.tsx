@@ -1,4 +1,3 @@
-import Sidebar from "../../components/Sidebar"
 import DashboardComponent from "../../components/DashboardComponent"
 import { useLoaderData, Await } from 'react-router-dom';
 import { RecipeList } from "../../interfaces";
@@ -77,7 +76,6 @@ const Dashboard = () => {
 
   return (
     <>
-      <Sidebar />
       <Suspense fallback={<Loading />}>
         <Await
           resolve={recipesData.recipes}
