@@ -23,7 +23,7 @@ const Dashboard = () => {
         pageData: pageData
       })
     }
-    if (inView && isFulfilled && currentRecipesData && currentRecipesData.pageData && currentRecipesData.pageData.hasNextPage) {
+    if (inView && isFulfilled && currentRecipesData.pageData.hasNextPage) {
       getNextPageData()
     }
     // We only need to fetch recipes when div at the bottom is viewed
@@ -43,7 +43,6 @@ const Dashboard = () => {
   useEffect(() => {
     setLikedIdData(JSON.parse(localStorage.getItem("recipe_likes") || "{}"))
   }, [currentRecipesData])
-
 
   const handleLikeUnlike = async (id?: string) => {
     if (!id) return console.log("id is undefined");
