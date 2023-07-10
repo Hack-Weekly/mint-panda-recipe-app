@@ -11,7 +11,7 @@ interface RecipeDataProp {
 
 const DashboardComponent = ({ recipeResultsData, likedIdData, handleLikeUnlike }: RecipeDataProp) => {
     return (
-        <div className="main padding-3">
+        <div className="main padding-4">
             <div className="flex justify-center">
                 <h2 className="h4 border-b-4 border-b-black text-center w-5/6">
                     Today's Featured
